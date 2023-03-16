@@ -75,7 +75,7 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash 
 source $HOME/.zshrc
 source $HOME/.nvm/nvm.sh
 nvm install --lts #instala la version estable de node
-npm install -g svgo wipeclean ttf2woff #Instala algunos paquetes importantes de node
+npm install -g #Instala algunos paquetes importantes de node, por aghora no hay ninguno que considere importante
 
 # terminal por defecto  ZSH
 sudo chsh -s /usr/bin/zsh
