@@ -79,6 +79,7 @@ npm install -g svgo wipeclean ttf2woff #Instala algunos paquetes importantes de 
 
 # terminal por defecto  ZSH
 sudo chsh -s /usr/bin/zsh
+chsh -s /usr/bin/zsh
 
 #comando stow para linckear los archivos de configuración
 #analiza directoiros en dotfiles, segun estos borra los del sistema y linckea a los de dotfiles.
