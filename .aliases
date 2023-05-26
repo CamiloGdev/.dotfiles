@@ -30,9 +30,6 @@ alias gb="git branch"
 alias gl="dot git pretty-log"
 alias gitlog="git log --graph --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all"
 
-# GitHub Copilot Cli
-eval "$(github-copilot-cli alias -- "$0")"
-
 # OTROS
 alias cls="clear"
 alias grep="grep --color"
