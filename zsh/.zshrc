@@ -119,6 +119,9 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 source ~/.dotfiles/.aliases
 
+# GitHub Copilot Cli aliases
+eval "$(github-copilot-cli alias -- "$0")"
+
 # node
 export NVM_DIR=$HOME/.nvm
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
