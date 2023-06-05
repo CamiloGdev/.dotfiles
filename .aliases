@@ -37,6 +37,8 @@ alias cat="bat"
 alias diff="icdiff"
 
 # EDITAR
-alias i.='(idea $PWD &>/dev/null &)'
-alias c.='(code $PWD &>/dev/null &)'
-alias o.='open .'
+alias i.="(idea $PWD &>/dev/null &)"
+alias c.="(code $PWD &>/dev/null &)"
+alias ci.="(code-insiders $PWD &>/dev/null &)"
+alias codi="code-insiders"
+alias o.="open ."
