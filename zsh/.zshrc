@@ -73,6 +73,10 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme # Inicializa el tema de powerleve
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+# Use modern completion system
+autoload -Uz compinit
+compinit
+
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
@@ -124,14 +128,14 @@ export NVM_DIR=$HOME/.nvm
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# zoxide
-eval "$(zoxide init zsh)"
-rm ~/.zcompdump*; compinit
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # si existe el archivo ~/.p10k.zsh, lo carga.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# zoxide
+eval "$(zoxide init zsh)"
+#rm ~/.zcompdump*; compinit
 
 # GitHub Copilot Cli aliases
 eval "$(github-copilot-cli alias -- "$0")"
