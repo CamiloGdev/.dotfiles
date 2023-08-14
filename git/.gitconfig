@@ -1,7 +1,7 @@
 [init]
 	defaultBranch = main
 [user]
-	name = Camilo Galeano
+	name = CamiloGdev
 	email = chcamilog@gmail.com
 [core]
-	editor = code --wait
+	editor = vim
