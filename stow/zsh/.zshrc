@@ -135,7 +135,7 @@ export NVM_DIR=$HOME/.nvm
 
 # zoxide
 eval "$(zoxide init zsh)"
-rm ~/.zcompdump*; compinit
+# rm ~/.zcompdump*; compinit
 
 # GitHub Copilot Cli aliases
 eval "$(github-copilot-cli alias -- "$0")"
