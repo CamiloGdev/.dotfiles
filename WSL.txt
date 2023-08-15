@@ -48,6 +48,7 @@
 		*linkea .gitconfig
 		*linkea p10k.zsh
 	-> instala NODE con control de versiones
+    *(https://github.com/nvm-sh/nvm)
 
 - instalamos fzf, completado inteligente con búsqueda avanzada (no se incluye en ecensiales por que rquiere instalción)
 	-> (git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf)

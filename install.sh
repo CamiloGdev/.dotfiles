@@ -83,8 +83,8 @@ chsh -s /usr/bin/zsh
 
 #comando stow para linckear los archivos de configuración
 #analiza directoiros en dotfiles, segun estos borra los del sistema y linckea a los de dotfiles.
-cd $HOME/.dotfiles
-stow */
+cd $HOME/.dotfiles/stow
+stow -t ... *
 source $HOME/.zshrc
 
 # ejecutar zsh
