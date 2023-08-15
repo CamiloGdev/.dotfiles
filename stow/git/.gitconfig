@@ -4,4 +4,4 @@
 	name = CamiloGdev
 	email = chcamilog@gmail.com
 [core]
-	editor = vim
+	editor = nvim
