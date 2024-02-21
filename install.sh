@@ -16,7 +16,7 @@ sudo apt-get install -y \
     locales locales-all \
     bat exa \
     sl lolcat cmatrix ffmpeg \
-    stow
+    stow 
 
 #DETALLES DE PAQUETES INSTALADOS
     # sudo (complemento para usuario root)
@@ -56,7 +56,7 @@ sudo apt-get install -y \
 sudo ln -s /usr/bin/batcat /usr/local/bin/bat
 
 # Oh-my-zsh
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+yes | sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" 
 
 # instalar plugins para zsh (quedan en la carpeta CUSTOM de oh my zsh)
 # (zsh-autosuggestions): Sugerencias basadas en el historial
@@ -68,24 +68,24 @@ git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zs
 
 #instalar POWERLEVEL10K THEME
 #con el stow se agrega la linea al .zshrc (source ~/powerlevel10k/powerlevel10k.zsh-theme) para ser activado
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
+#instalamos fzf, completado inteligente con búsqueda avanzada 
+sudo apt-get install -y fzf
 
 # Node/NPM/PNPM install
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash #Instala gestor de ver de node, nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash #Instala gestor de ver de node, nvm
 source $HOME/.zshrc
 source $HOME/.nvm/nvm.sh
-nvm install --lts #instala la version estable de node
+nvm install node #instala la version estable de node
 npm install -g #Instala algunos paquetes importantes de node, por aghora no hay ninguno que considere importante
-
-# terminal por defecto  ZSH
-sudo chsh -s /usr/bin/zsh
-chsh -s /usr/bin/zsh
 
 #comando stow para linckear los archivos de configuración
 #analiza directoiros en dotfiles, segun estos borra los del sistema y linckea a los de dotfiles.
 cd $HOME/.dotfiles/stow
-stow -t ... *
+stow --target=$HOME *
 source $HOME/.zshrc
+cd
 
 # ejecutar zsh
 zsh

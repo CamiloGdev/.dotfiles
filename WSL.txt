@@ -43,16 +43,13 @@
 	-> instala Oh-my-zsh
 	->-instala POWERLEVEL10K, comando para configurar de nuevo (p10k configure)
 	-> instala plugins de zsh
+	-> instala fzf
 	-> ejecuta stow para linkear los dotfiles
 		*linkea .zshrc que contiene el tema, los plugins, etc...
 		*linkea .gitconfig
 		*linkea p10k.zsh
-	-> instala NODE con control de versiones
-    *(https://github.com/nvm-sh/nvm)
+	-> instala NODE con control de versiones *(https://github.com/nvm-sh/nvm)
 
-- instalamos fzf, completado inteligente con búsqueda avanzada (no se incluye en ecensiales por que rquiere instalción)
-	-> (git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf)
-	-> (~/.fzf/install)
 
 -........instalar Docker ...............(incluir en esenciales)
 
