@@ -1,11 +1,7 @@
 -- ajuster de ui vscode
 -- surround
+-- terminar de ocnfigurar los atajos para multicursor
 -- easymotion
--- splits: leader and v y s
--- mover entre splits con: ctrl y direcciones
--- mover entre tabs con: tab
--- cerrar tab: leader + leader + q
--- cerrar todas las pestañas: leader + leader + Q
 -- manejo de la termina, abrir nueva, abrir en la misma, cerrar, moverse entre ellas, volver al codigo.
 -- apertura de la busqueda
 -- verificar si el colapsado esta funcionando correctamente
@@ -16,6 +12,13 @@
 -- abrir el archivo sin salir del explorador
 -- abrir el archivo e ir a el directamente
 -- buscar como hacer el rename de una declaracion apra que cambie en todo el codigo
+-- por alguna razon no me formatea los lua en pc del trabajo, en la casa si lo hace
+-- terminar de poner las descripciones de los atajos
+-- navegacion entre tabs directamente en los atajos de vscode: con tabulacion
+-- moverse entre los splits directamente con los atajos de vscode: ctrl y direcciones
+-- remapeos para redimencionar, y interactuar con los splits directamente con vscode
+-- configurar zc y zo
+-- organizar los atajos de scrolling para que trabajen con los de vim y no con los de vscode
 local vscode = require('vscode')
 
 -- Set space as the leader key
@@ -76,11 +79,6 @@ vim.api.nvim_set_keymap('', '<leader>h', '^', {
     silent = true
 })
 
-vim.api.nvim_set_keymap('', '<leader>m', [[:lua print(vim.api.nvim_get_mode().mode)<CR>]], {
-    noremap = true,
-    silent = false
-})
-
 -- Center view after search
 vim.keymap.set('n', 'n', 'nzzzv', {
     desc = 'Next search result and center view'
@@ -112,25 +110,63 @@ vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 
 -- Move block
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", {
+vim.keymap.set("v", "J", "<Cmd>m '>+1<CR>gv=gv", {
     desc = "Move Block Down"
 })
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", {
+vim.keymap.set("v", "K", "<Cmd>m '<-2<CR>gv=gv", {
     desc = "Move Block Up"
 })
 -------------------------
 --- File operations
 
 --- Save file
-vim.keymap.set('n', '<leader>w', ':w<CR>', {
+vim.keymap.set({'n', 'x'}, '<leader>w', '<Cmd>w<CR>', {
     desc = 'Save file'
+})
+
+-- Clouse file
+vim.keymap.set({'n', 'x'}, '<leader><leader>q', '<Cmd>Quit<CR>', { silent = true, noremap = true })
+
+-- Clouse all files
+vim.keymap.set({'n', 'x'}, '<leader><leader>Q', '<Cmd>Qall<CR>', { silent = true, noremap = true })
+
+------------------------------
+--- Tab navigation
+vim.keymap.set({'n', 'x'}, '<Tab>', '<Cmd>Tabnext<CR>', {
+    desc = 'Next tab'
+})
+vim.keymap.set({'n', 'x'}, '<S-Tab>', '<Cmd>Tabprevious<CR>', {
+    desc = 'Previous tab'
+})
+------------------------------
+--- Splits
+-- Create splits
+vim.keymap.set({'n', 'x'}, '<leader>v', '<Cmd>Vsplit<CR>', {
+    desc = 'Vertical split'
+})
+vim.keymap.set({'n', 'x'}, '<leader>s', '<Cmd>Split<CR>', {
+    desc = 'Horizontal split'
+})
+
+-- Move between splits
+vim.keymap.set({'n', 'x'}, '<C-h>', '<Cmd>call VSCodeNotify("workbench.action.navigateLeft")<CR>', {
+    desc = 'Move to the left split'
+})
+vim.keymap.set({'n', 'x'}, '<C-l>', '<Cmd>call VSCodeNotify("workbench.action.navigateRight")<CR>', {
+    desc = 'Move to the right split'
+})
+vim.keymap.set({'n', 'x'}, '<C-j>', '<Cmd>call VSCodeNotify("workbench.action.navigateDown")<CR>', {
+    desc = 'Move to the down split'
+})
+vim.keymap.set({'n', 'x'}, '<C-k>', '<Cmd>call VSCodeNotify("workbench.action.navigateUp")<CR>', {
+    desc = 'Move to the up split'
 })
 
 --------------------------
 --- Search
 
 -- clear search highlights
-vim.keymap.set('n', '<leader><CR>', ':nohlsearch<CR>', {
+vim.keymap.set('n', '<leader><CR>', '<Cmd>nohlsearch<CR>', {
     desc = 'Clear search highlights'
 })
 
@@ -139,3 +175,4 @@ vim.opt.ignorecase = true
 
 -- disable "ignorecase" option if the search pattern contains upper case characters
 vim.opt.smartcase = true
+

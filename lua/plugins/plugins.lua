@@ -5,7 +5,18 @@ return {{
         rocks = {'magick'}
     },
     -- install vim-visual-multi plugin
-    "mg979/vim-visual-multi"
+    "mg979/vim-visual-multi",
+    --[[ {
+      "mg979/vim-visual-multi",
+      init = function()
+        -- vim.g.VM_default_mappings = 0
+        vim.g.VM_maps = {
+          ['Find Under'] = 'mc',
+          ["Find Subword Under"] = "mc",
+        }
+        -- vim.g.VM_add_cursor_at_pos_no_mappings = 1
+      end,
+    } ]]
     -- automatically install multi cursor plugin when using vscode
     --[[ {
       'vscode-neovim/vscode-multi-cursor.nvim',
