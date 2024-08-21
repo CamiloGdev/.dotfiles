@@ -1,14 +1,11 @@
-return {
-  {
+return {{
     'vhyrro/luarocks.nvim',
     priority = 1001, -- this plugin needs to run before anything else
     opts = {
-      rocks = { 'magick' },
+        rocks = {'magick'}
     },
     -- install vim-visual-multi plugin
-    "mg979/vim-visual-multi",
-    -- colorscheme that will be used when installing plugins.
-    -- install = { colorscheme = { "habamax" } },
+    "mg979/vim-visual-multi"
     -- automatically install multi cursor plugin when using vscode
     --[[ {
       'vscode-neovim/vscode-multi-cursor.nvim',
@@ -18,5 +15,4 @@ return {
     }, ]]
     --- automatically install flash.nvim when using vscode
     -- "folke/flash.nvim"
-  }
-}
+}}
