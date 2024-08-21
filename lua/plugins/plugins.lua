@@ -17,6 +17,17 @@ return {{
         -- vim.g.VM_add_cursor_at_pos_no_mappings = 1
       end,
     } ]]
+    -- install surround
+    {
+      "kylechui/nvim-surround",
+      version = "*", -- Use for stability; omit to use `main` branch for the latest features
+      event = "VeryLazy",
+      config = function()
+          require("nvim-surround").setup({
+              -- Configuration here, or leave empty to use defaults
+          })
+      end
+    },
     -- automatically install multi cursor plugin when using vscode
     --[[ {
       'vscode-neovim/vscode-multi-cursor.nvim',

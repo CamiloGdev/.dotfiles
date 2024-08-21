@@ -1,5 +1,4 @@
 -- ajuster de ui vscode
--- surround
 -- terminar de ocnfigurar los atajos para multicursor
 -- easymotion
 -- manejo de la termina, abrir nueva, abrir en la misma, cerrar, moverse entre ellas, volver al codigo.
