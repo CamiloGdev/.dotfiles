@@ -1,9 +1,6 @@
 -- ajuster de ui vscode
--- terminar de ocnfigurar los atajos para multicursor
--- easymotion
--- manejo de la termina, abrir nueva, abrir en la misma, cerrar, moverse entre ellas, volver al codigo.
+-- manejo de la terminal, abrir nueva, abrir en la misma, cerrar, moverse entre ellas, volver al codigo.
 -- apertura de la busqueda
--- verificar si el colapsado esta funcionando correctamente
 -- scrolling correctamente
 -- mostrar, ocultar el sidebar
 -- ir al explorador de archivos, volver al codigo
@@ -16,7 +13,6 @@
 -- navegacion entre tabs directamente en los atajos de vscode: con tabulacion
 -- moverse entre los splits directamente con los atajos de vscode: ctrl y direcciones
 -- remapeos para redimencionar, y interactuar con los splits directamente con vscode
--- configurar zc y zo
 -- organizar los atajos de scrolling para que trabajen con los de vim y no con los de vscode
 local vscode = require('vscode')
 
@@ -85,8 +81,28 @@ vim.keymap.set('n', 'n', 'nzzzv', {
 vim.keymap.set('n', 'N', 'Nzzzv', {
     desc = 'Previous search result and center view'
 })
---[[ vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv") ]]
+--[[ vim.keymap.set("n", "n", "nzz")
+vim.keymap.set("n", "N", "Nzz") ]]
+
+-- Keep window centered when going up/down
+-- vim.keymap.set("n", "J", "mzJ`z")
+-- vim.keymap.set("n", "<C-d>", "<C-d>zz")
+-- vim.keymap.set("n", "<C-u>", "<C-u>zz")
+
+---------------------------------
+--- Fold and unfold
+vim.keymap.set({'n', 'x'}, 'zc', '<Cmd>lua require("vscode").call("editor.toggleFold")<CR>', {
+    desc = 'Fold current block'
+})
+vim.keymap.set({'n', 'x'}, 'zC', '<Cmd>lua require("vscode").call("editor.foldAll")<CR>', {
+    desc = 'Unfold all blocks'
+})
+vim.keymap.set({'n', 'x'}, 'zo', '<Cmd>lua require("vscode").call("editor.unfold")<CR>', {
+    desc = 'Unfold current block'
+})
+vim.keymap.set({'n', 'x'}, 'zO', '<Cmd>lua require("vscode").call("editor.unfoldAll")<CR>', {
+    desc = 'Unfold all blocks'
+})
 
 -- skip folds
 vim.cmd('nmap j gj', {
@@ -95,11 +111,6 @@ vim.cmd('nmap j gj', {
 vim.cmd('nmap k gk', {
     desc = 'Skip folds up'
 })
-
--- Keep window centered when going up/down
--- vim.keymap.set("n", "J", "mzJ`z")
--- vim.keymap.set("n", "<C-d>", "<C-d>zz")
--- vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
 -----------------------
 -- Visual --
@@ -124,10 +135,16 @@ vim.keymap.set({'n', 'x'}, '<leader>w', '<Cmd>w<CR>', {
 })
 
 -- Clouse file
-vim.keymap.set({'n', 'x'}, '<leader><leader>q', '<Cmd>Quit<CR>', { silent = true, noremap = true })
+vim.keymap.set({'n', 'x'}, '<leader><leader>q', '<Cmd>Quit<CR>', {
+    silent = true,
+    noremap = true
+})
 
 -- Clouse all files
-vim.keymap.set({'n', 'x'}, '<leader><leader>Q', '<Cmd>Qall<CR>', { silent = true, noremap = true })
+vim.keymap.set({'n', 'x'}, '<leader><leader>Q', '<Cmd>Qall<CR>', {
+    silent = true,
+    noremap = true
+})
 
 ------------------------------
 --- Tab navigation
@@ -175,3 +192,10 @@ vim.opt.ignorecase = true
 -- disable "ignorecase" option if the search pattern contains upper case characters
 vim.opt.smartcase = true
 
+--- Remember keymaps
+-- el <leader> en  vim-visual-multi es \\ y en vim-easymotion es <leader><leader>
+-- vim-visual-multi <leader>A para seleccionar todas las ocurrencias
+-- easymotion <leader><leader>f, <leader><leader>w, <leader><leader>b
+-- multicursor <C-n>, q, Q
+-- recordar el modo visual block con <C-v>
+-- insertar tanto em modo visual block como en modo visual line con mi, mI, ma, mA
