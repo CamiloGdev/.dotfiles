@@ -6,33 +6,6 @@
 	"vim.leader": "<Space>",
 
 	"vim.normalModeKeyBindingsNonRecursive": [
-		// NAVEGACIÓN
-		// switch b/w buffers
-		{ "before": ["<S-h>"], "commands": [":bprevious"] },
-		{ "before": ["<S-l>"], "commands": [":bnext"] },
-
-		// splits
-		{ "before": ["<leader>", "v"], "commands": [":vsplit"] },
-		{ "before": ["<leader>", "s"], "commands": [":split"] },
-
-		// panes
-		{
-			"before": ["<leader>", "h"],
-			"commands": ["workbench.action.focusLeftGroup"]
-		},
-		{
-			"before": ["<leader>", "j"],
-			"commands": ["workbench.action.focusBelowGroup"]
-		},
-		{
-			"before": ["<leader>", "k"],
-			"commands": ["workbench.action.focusAboveGroup"]
-		},
-		{
-			"before": ["<leader>", "l"],
-			"commands": ["workbench.action.focusRightGroup"]
-		},
-
 		// FILE TREE
 		{
 			"before": ["<leader>", "e"],
@@ -41,60 +14,6 @@
 		{
 			"before": ["<leader>", "b"],
 			"commands": ["workbench.action.toggleSidebarVisibility"]
-		},
-
-		// NICE TO HAVE
-		{
-			"before": ["<leader>", "w"],
-			"commands": ["workbench.action.files.save"]
-		},
-		{
-			"before": ["<leader>", "<leader>", "q"],
-			"commands": ["workbench.action.closeActiveEditor"]
-		},
-		{ "before": ["<leader>", "f"], "commands": ["workbench.action.quickOpen"] },
-		{
-			"before": ["<leader>", "<leader>", "f"],
-			"commands": ["workbench.action.showCommands"]
-		},
-		{
-			"before": ["<leader>", "F"],
-			"commands": ["workbench.action.gotoSymbol"]
-		},
-		{ "before": ["<leader>", "y"], "after": ["\"", "+", "y"] },
-		{
-			"before": ["g", "h"],
-			"commands": ["editor.action.showDefinitionPreviewHover"]
-		},
-
-		// OTROS
-		{ "before": ["<C-d>"], "after": ["<C-d>", "z", "z"] },
-		{ "before": ["<C-u>"], "after": ["<C-u>", "z", "z"] },
-		{ "before": ["N"], "after": ["N", "z", "z"] },
-		{ "before": ["n"], "after": ["n", "z", "z"] },
-		{ "before": ["<C-l>"], "after": ["$"] },
-		{ "before": ["<C-h>"], "after": ["^"] }
-	],
-
-	"vim.visualModeKeyBindings": [
-		// Permanecer en visual mode al indentar
-		{ "before": ["<"], "commands": ["editor.action.outdentLines"] },
-		{ "before": [">"], "commands": ["editor.action.indentLines"] },
-		// Mover verticalmente las lines seleccionadas en visual mode
-		{ "before": ["J"], "commands": ["editor.action.moveLinesDownAction"] },
-		{ "before": ["K"], "commands": ["editor.action.moveLinesUpAction"] }
-	],
-
-	"vim.visualModeKeyBindingsNonRecursive": [
-		{ "before": ["<leader>", "y"], "after": ["\"", "+", "y"] },
-		{ "before": ["<C-l>"], "after": ["$"] },
-		{ "before": ["<C-h>"], "after": ["^"] }
-	],
-
-	"vim.operatorPendingModeKeyBindings": [
-		{ "before": ["<C-l>"], "after": ["$"] },
-		{ "before": ["<C-h>"], "after": ["^"] }
-	],
-
-	"vim.insertModeKeyBindings": [{ "before": ["j", "k"], "after": ["<Esc>"] }]
+		}
+	]
 }

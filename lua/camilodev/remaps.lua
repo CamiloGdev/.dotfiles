@@ -10,10 +10,10 @@
 -- buscar como hacer el rename de una declaracion apra que cambie en todo el codigo
 -- por alguna razon no me formatea los lua en pc del trabajo, en la casa si lo hace
 -- terminar de poner las descripciones de los atajos
--- navegacion entre tabs directamente en los atajos de vscode: con tabulacion
--- moverse entre los splits directamente con los atajos de vscode: ctrl y direcciones
 -- remapeos para redimencionar, y interactuar con los splits directamente con vscode
 -- organizar los atajos de scrolling para que trabajen con los de vim y no con los de vscode
+-- como desplazarce dentro de una definicion con camelCase o snake_case entre palabras
+-- por alguna razon dejo de funcionar los atajos para mover bloques de codigo
 local vscode = require('vscode')
 
 -- Set space as the leader key
@@ -165,16 +165,16 @@ vim.keymap.set({'n', 'x'}, '<leader>s', '<Cmd>Split<CR>', {
 })
 
 -- Move between splits
-vim.keymap.set({'n', 'x'}, '<C-h>', '<Cmd>call VSCodeNotify("workbench.action.navigateLeft")<CR>', {
+vim.keymap.set({'n', 'x'}, '<C-h>', '<Cmd>call VSCodeNotify("workbench.action.focusLeftGroup")<CR>', {
     desc = 'Move to the left split'
 })
-vim.keymap.set({'n', 'x'}, '<C-l>', '<Cmd>call VSCodeNotify("workbench.action.navigateRight")<CR>', {
+vim.keymap.set({'n', 'x'}, '<C-l>', '<Cmd>call VSCodeNotify("workbench.action.focusRightGroup")<CR>', {
     desc = 'Move to the right split'
 })
-vim.keymap.set({'n', 'x'}, '<C-j>', '<Cmd>call VSCodeNotify("workbench.action.navigateDown")<CR>', {
+vim.keymap.set({'n', 'x'}, '<C-j>', '<Cmd>call VSCodeNotify("workbench.action.focusBelowGroup")<CR>', {
     desc = 'Move to the down split'
 })
-vim.keymap.set({'n', 'x'}, '<C-k>', '<Cmd>call VSCodeNotify("workbench.action.navigateUp")<CR>', {
+vim.keymap.set({'n', 'x'}, '<C-k>', '<Cmd>call VSCodeNotify("workbench.action.focusAboveGroup")<CR>', {
     desc = 'Move to the up split'
 })
 
@@ -196,6 +196,11 @@ vim.opt.smartcase = true
 -- el <leader> en  vim-visual-multi es \\ y en vim-easymotion es <leader><leader>
 -- vim-visual-multi <leader>A para seleccionar todas las ocurrencias
 -- easymotion <leader><leader>f, <leader><leader>w, <leader><leader>b
--- multicursor <C-n>, q, Q
--- recordar el modo visual block con <C-v>
+-- multicursor: <C-n>, q, Q
+-- recordar el modo visual block con: <C-v>
 -- insertar tanto em modo visual block como en modo visual line con mi, mI, ma, mA
+-- ver el listado de menus del sidebar con: <C-q>
+
+-- mostrar/ocultar sidebar con: <C-b>
+-- previsualizar un archivo con: space
+-- abrir el archivo con: l
