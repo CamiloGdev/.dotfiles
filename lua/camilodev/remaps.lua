@@ -2,18 +2,12 @@
 -- manejo de la terminal, abrir nueva, abrir en la misma, cerrar, moverse entre ellas, volver al codigo.
 -- apertura de la busqueda
 -- scrolling correctamente
--- mostrar, ocultar el sidebar
--- ir al explorador de archivos, volver al codigo
--- mostrar el archivo sin salir del explorador y ocultar al moverse, o mostrar el otro al que nos movimos
--- abrir el archivo sin salir del explorador
--- abrir el archivo e ir a el directamente
--- buscar como hacer el rename de una declaracion apra que cambie en todo el codigo
+-- organizar los atajos de scrolling para que trabajen con los de vim y no con los de vscode
 -- por alguna razon no me formatea los lua en pc del trabajo, en la casa si lo hace
 -- terminar de poner las descripciones de los atajos
--- remapeos para redimencionar, y interactuar con los splits directamente con vscode
--- organizar los atajos de scrolling para que trabajen con los de vim y no con los de vscode
--- como desplazarce dentro de una definicion con camelCase o snake_case entre palabras
--- por alguna razon dejo de funcionar los atajos para mover bloques de codigo
+-- remapeos para redimencionar los splits directamente con vscode
+-- poder usar nvim en los imputs de vscode, como el editor de symbol o el de commit message, etc...
+-- para moverse en la lista de opcones de los comandos de vscode, se usa <C-n> y <C-p> pero <C-n> esta ocupado para seleccionar multiples opciones
 local vscode = require('vscode')
 
 -- Set space as the leader key
@@ -113,19 +107,19 @@ vim.cmd('nmap k gk', {
 })
 
 -----------------------
--- Visual --
-
+-- Visual
 -- Stay in indent mode
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 
 -- Move block
-vim.keymap.set("v", "J", "<Cmd>m '>+1<CR>gv=gv", {
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", {
     desc = "Move Block Down"
 })
-vim.keymap.set("v", "K", "<Cmd>m '<-2<CR>gv=gv", {
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", {
     desc = "Move Block Up"
 })
+
 -------------------------
 --- File operations
 
@@ -154,6 +148,7 @@ vim.keymap.set({'n', 'x'}, '<Tab>', '<Cmd>Tabnext<CR>', {
 vim.keymap.set({'n', 'x'}, '<S-Tab>', '<Cmd>Tabprevious<CR>', {
     desc = 'Previous tab'
 })
+
 ------------------------------
 --- Splits
 -- Create splits
@@ -192,14 +187,39 @@ vim.opt.ignorecase = true
 -- disable "ignorecase" option if the search pattern contains upper case characters
 vim.opt.smartcase = true
 
---- Remember keymaps
+-------------------------------------
+--- vim-spider keymaps, lua implementation of CamelCaseMotion
+
+vim.keymap.set({"n", "o", "x"}, "w", "<cmd>lua require('spider').motion('w')<CR>", {
+    desc = "Spider-w"
+})
+vim.keymap.set({"n", "o", "x"}, "e", "<cmd>lua require('spider').motion('e')<CR>", {
+    desc = "Spider-e"
+})
+vim.keymap.set({"n", "o", "x"}, "b", "<cmd>lua require('spider').motion('b')<CR>", {
+    desc = "Spider-b"
+})
+
+------------------------------------
+------------------------------------
+--- Remember keymaps ---
+
+-- multicursor: <C-n>, q, Q
 -- el <leader> en  vim-visual-multi es \\ y en vim-easymotion es <leader><leader>
 -- vim-visual-multi <leader>A para seleccionar todas las ocurrencias
+
 -- easymotion <leader><leader>f, <leader><leader>w, <leader><leader>b
--- multicursor: <C-n>, q, Q
--- recordar el modo visual block con: <C-v>
+
+-- modo visual block con: <C-v>
 -- insertar tanto em modo visual block como en modo visual line con mi, mI, ma, mA
+
 -- ver el listado de menus del sidebar con: <C-q>
+-- cambio de nombre de una variable con: <F2>
+
+-- mover el cursor a la anterior posicion con: <C-o> y a la siguiente con: <C-i>
+
+-- para hacer la accion de hover es con gh o con K, para enfocar la ventana emergente y podernos mover en esta es de nuevo con K
+-- para moverse en la listas de suggestions es con <C-n> y <C-p>
 
 -- mostrar/ocultar sidebar con: <C-b>
 -- previsualizar un archivo con: space
