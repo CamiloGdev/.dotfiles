@@ -1,14 +1,35 @@
 -- ajuster de ui vscode
 -- manejo de la terminal, abrir nueva, abrir en la misma, cerrar, moverse entre ellas, volver al codigo.
 -- apertura de la busqueda
--- scrolling correctamente
--- organizar los atajos de scrolling para que trabajen con los de vim y no con los de vscode
 -- por alguna razon no me formatea los lua en pc del trabajo, en la casa si lo hace
--- terminar de poner las descripciones de los atajos
--- remapeos para redimencionar los splits directamente con vscode
+-- remapeos para redimencionar los splits directamente con vscode, como en tmux
 -- poder usar nvim en los imputs de vscode, como el editor de symbol o el de commit message, etc...
--- para moverse en la lista de opcones de los comandos de vscode, se usa <C-n> y <C-p> pero <C-n> esta ocupado para seleccionar multiples opciones
-local vscode = require('vscode')
+-- manejo correcto de copilot en vscode
+-- manejo correcto de copilot en neovim
+-- neogit para neovim
+-- tmux para neovim
+-- para le ejecucion de comandos procurar usar en este orden de prioridad: <Cmd>, :, vim.cmd; en terminos de rendiminento
+-- como funciona el zc en neovim
+-- vim en la terminal de windows y de vscode
+-- autocompleta en neovim
+-- formateo en neovim
+-- por alguna razon el centrado con zz despues de <C-d> y <C-u> no funciona en vscode
+-- el scroll por lineas en vscode no desplaza el cursor, lo deja en el mismo lugar y solo mueve la pantalla
+-----------------------------
+-- Comprobación para determinar si estamos en VSCode
+local in_vscode = vim.g.vscode ~= nil
+
+-- Carga el módulo de VSCode solo si estamos en VSCode
+local vscode = in_vscode and require('vscode') or nil
+
+-- Simplified function to handle any action in both VSCode and Neovim
+local function create_action(vscode_action, nvim_action)
+    if in_vscode then
+        return vscode_action
+    else
+        return nvim_action
+    end
+end
 
 -- Set space as the leader key
 vim.g.mapleader = " "
@@ -20,9 +41,6 @@ vim.keymap.set('i', 'jk', '<Esc>', {
     desc = 'Exit insert mode with jk'
 })
 
---[[ vim.keymap.set('t', 'jk', '<C-\><C-n>', {
-    desc = 'Exit terminal mode with jk'
-}) ]]
 --------------------------
 --- System clipboard integration
 
@@ -36,17 +54,6 @@ vim.keymap.set('n', 'U', '<C-r>', {
     desc = 'Redo'
 })
 
--- Copy to Clipboard
---[[ vim.keymap.set('v', '<leader>y', '"+y', { desc = 'Copy to system clipboard' })
-vim.keymap.set('v', '<leader>d', '"+d', { desc = 'Cut to system clipboard' })
-vim.keymap.set('n', '<leader>y', '"+yy', { desc = 'Copy line to system clipboard' }) ]]
-
--- Paste from clipboard
---[[ vim.keymap.set('n', '<leader>p', '"+p', { desc = 'Paste after cursor from system clipboard' })
-vim.keymap.set('n', '<leader>P', '"+P', { desc = 'Paste before cursor from system clipboard' })
-vim.keymap.set('v', '<leader>p', '"+p', { desc = 'Paste after selection from system clipboard' })
-vim.keymap.set('v', '<leader>P', '"+P', { desc = 'Paste before selection from system clipboard' }) ]]
-
 -------------------------------------
 --- Navigation enhancements
 
@@ -54,18 +61,10 @@ vim.keymap.set('v', '<leader>P', '"+P', { desc = 'Paste before selection from sy
 vim.keymap.set({'n', 'v', 'o'}, '<leader>l', '$', {
     desc = 'Move to end of line'
 })
-vim.api.nvim_set_keymap('', '<leader>l', '$', {
-    noremap = false,
-    silent = true
-})
 
 -- Beginning of line movements
 vim.keymap.set({'n', 'v', 'o'}, '<leader>h', '^', {
     desc = 'Move to first non-blank character of line'
-})
-vim.api.nvim_set_keymap('', '<leader>h', '^', {
-    noremap = false,
-    silent = true
 })
 
 -- Center view after search
@@ -75,49 +74,63 @@ vim.keymap.set('n', 'n', 'nzzzv', {
 vim.keymap.set('n', 'N', 'Nzzzv', {
     desc = 'Previous search result and center view'
 })
---[[ vim.keymap.set("n", "n", "nzz")
-vim.keymap.set("n", "N", "Nzz") ]]
 
 -- Keep window centered when going up/down
--- vim.keymap.set("n", "J", "mzJ`z")
--- vim.keymap.set("n", "<C-d>", "<C-d>zz")
--- vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "J", "mzJ`z", {
+    desc = "Join lines and maintain cursor position"
+})
+vim.keymap.set({"n", "x"}, "<C-d>", "<C-d>zz", {
+    desc = "Scroll down and keep cursor centered"
+})
+vim.keymap.set({"n", "x"}, "<C-u>", "<C-u>zz", {
+    desc = "Scroll up and keep cursor centered"
+})
 
 ---------------------------------
 --- Fold and unfold
-vim.keymap.set({'n', 'x'}, 'zc', '<Cmd>lua require("vscode").call("editor.toggleFold")<CR>', {
-    desc = 'Fold current block'
-})
-vim.keymap.set({'n', 'x'}, 'zC', '<Cmd>lua require("vscode").call("editor.foldAll")<CR>', {
-    desc = 'Unfold all blocks'
-})
-vim.keymap.set({'n', 'x'}, 'zo', '<Cmd>lua require("vscode").call("editor.unfold")<CR>', {
-    desc = 'Unfold current block'
-})
-vim.keymap.set({'n', 'x'}, 'zO', '<Cmd>lua require("vscode").call("editor.unfoldAll")<CR>', {
-    desc = 'Unfold all blocks'
-})
+if in_vscode then
+    vim.keymap.set({'n', 'x'}, 'zc', '<Cmd>lua require("vscode").call("editor.toggleFold")<CR>', {
+        desc = 'Toggle fold current block'
+    })
+    vim.keymap.set({'n', 'x'}, 'zC', '<Cmd>lua require("vscode").call("editor.foldAll")<CR>', {
+        desc = 'Fold all blocks'
+    })
+    vim.keymap.set({'n', 'x'}, 'zo', '<Cmd>lua require("vscode").call("editor.unfold")<CR>', {
+        desc = 'Unfold current block'
+    })
+    vim.keymap.set({'n', 'x'}, 'zO', '<Cmd>lua require("vscode").call("editor.unfoldAll")<CR>', {
+        desc = 'Unfold all blocks'
+    })
+end
 
 -- skip folds
-vim.cmd('nmap j gj', {
-    desc = 'Skip folds down'
-})
-vim.cmd('nmap k gk', {
-    desc = 'Skip folds up'
-})
+if in_vscode then
+    vim.cmd('nmap j gj', {
+        desc = 'Skip folds down'
+    })
+    vim.cmd('nmap k gk', {
+        desc = 'Skip folds up'
+    })
+end
 
 -----------------------
 -- Visual
 -- Stay in indent mode
-vim.keymap.set("v", "<", "<gv")
-vim.keymap.set("v", ">", ">gv")
+vim.keymap.set("v", "<", "<gv", {
+    desc = "Indent left and stay in visual mode"
+})
+vim.keymap.set("v", ">", ">gv", {
+    desc = "Indent right and stay in visual mode"
+})
 
 -- Move block
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", {
-    desc = "Move Block Down"
+    desc = "Move Block Down",
+    silent = true
 })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", {
-    desc = "Move Block Up"
+    desc = "Move Block Up",
+    silent = true
 })
 
 -------------------------
@@ -125,53 +138,57 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", {
 
 --- Save file
 vim.keymap.set({'n', 'x'}, '<leader>w', '<Cmd>w<CR>', {
-    desc = 'Save file'
+    desc = 'Save current file'
 })
 
--- Clouse file
-vim.keymap.set({'n', 'x'}, '<leader><leader>q', '<Cmd>Quit<CR>', {
-    silent = true,
-    noremap = true
+-- Clouse current file
+vim.keymap.set({'n', 'x'}, '<leader><leader>q', create_action('<Cmd>Quit<CR>', '<Cmd>q<CR>'), {
+    desc = 'Close current file'
 })
 
--- Clouse all files
-vim.keymap.set({'n', 'x'}, '<leader><leader>Q', '<Cmd>Qall<CR>', {
-    silent = true,
-    noremap = true
+-- Close all files
+vim.keymap.set({'n', 'x'}, '<leader><leader>Q', create_action('<Cmd>Qall<CR>', '<Cmd>qa<CR>'), {
+    desc = 'Close all files'
 })
 
 ------------------------------
 --- Tab navigation
-vim.keymap.set({'n', 'x'}, '<Tab>', '<Cmd>Tabnext<CR>', {
-    desc = 'Next tab'
-})
-vim.keymap.set({'n', 'x'}, '<S-Tab>', '<Cmd>Tabprevious<CR>', {
-    desc = 'Previous tab'
-})
+if in_vscode then
+    vim.keymap.set({'n', 'x'}, '<Tab>', '<Cmd>Tabnext<CR>', {
+        desc = 'Next tab'
+    })
+    vim.keymap.set({'n', 'x'}, '<S-Tab>', '<Cmd>Tabprevious<CR>', {
+        desc = 'Previous tab'
+    })
+end
 
 ------------------------------
 --- Splits
 -- Create splits
-vim.keymap.set({'n', 'x'}, '<leader>v', '<Cmd>Vsplit<CR>', {
-    desc = 'Vertical split'
-})
-vim.keymap.set({'n', 'x'}, '<leader>s', '<Cmd>Split<CR>', {
-    desc = 'Horizontal split'
-})
+if condition then
+    vim.keymap.set({'n', 'x'}, '<leader>v', '<Cmd>Vsplit<CR>', {
+        desc = 'Vertical split'
+    })
+    vim.keymap.set({'n', 'x'}, '<leader>s', '<Cmd>Split<CR>', {
+        desc = 'Horizontal split'
+    })
+end
 
 -- Move between splits
-vim.keymap.set({'n', 'x'}, '<C-h>', '<Cmd>call VSCodeNotify("workbench.action.focusLeftGroup")<CR>', {
-    desc = 'Move to the left split'
-})
-vim.keymap.set({'n', 'x'}, '<C-l>', '<Cmd>call VSCodeNotify("workbench.action.focusRightGroup")<CR>', {
-    desc = 'Move to the right split'
-})
-vim.keymap.set({'n', 'x'}, '<C-j>', '<Cmd>call VSCodeNotify("workbench.action.focusBelowGroup")<CR>', {
-    desc = 'Move to the down split'
-})
-vim.keymap.set({'n', 'x'}, '<C-k>', '<Cmd>call VSCodeNotify("workbench.action.focusAboveGroup")<CR>', {
-    desc = 'Move to the up split'
-})
+if in_vscode then
+    vim.keymap.set({'n', 'x'}, '<C-h>', '<Cmd>call VSCodeNotify("workbench.action.focusLeftGroup")<CR>', {
+        desc = 'Move to the left split'
+    })
+    vim.keymap.set({'n', 'x'}, '<C-l>', '<Cmd>call VSCodeNotify("workbench.action.focusRightGroup")<CR>', {
+        desc = 'Move to the right split'
+    })
+    vim.keymap.set({'n', 'x'}, '<C-j>', '<Cmd>call VSCodeNotify("workbench.action.focusBelowGroup")<CR>', {
+        desc = 'Move to the down split'
+    })
+    vim.keymap.set({'n', 'x'}, '<C-k>', '<Cmd>call VSCodeNotify("workbench.action.focusAboveGroup")<CR>', {
+        desc = 'Move to the up split'
+    })
+end
 
 --------------------------
 --- Search
@@ -191,20 +208,20 @@ vim.opt.smartcase = true
 --- vim-spider keymaps, lua implementation of CamelCaseMotion
 
 vim.keymap.set({"n", "o", "x"}, "w", "<cmd>lua require('spider').motion('w')<CR>", {
-    desc = "Spider-w"
+    desc = "Spider-w, move to the next word start"
 })
 vim.keymap.set({"n", "o", "x"}, "e", "<cmd>lua require('spider').motion('e')<CR>", {
-    desc = "Spider-e"
+    desc = "Spider-e, move to the end of the word"
 })
 vim.keymap.set({"n", "o", "x"}, "b", "<cmd>lua require('spider').motion('b')<CR>", {
-    desc = "Spider-b"
+    desc = "Spider-b, move to the previous word start"
 })
 
 ------------------------------------
 ------------------------------------
 --- Remember keymaps ---
 
--- multicursor: <C-n>, q, Q
+-- multicursor: <C-m>, q, Q
 -- el <leader> en  vim-visual-multi es \\ y en vim-easymotion es <leader><leader>
 -- vim-visual-multi <leader>A para seleccionar todas las ocurrencias
 
@@ -224,3 +241,6 @@ vim.keymap.set({"n", "o", "x"}, "b", "<cmd>lua require('spider').motion('b')<CR>
 -- mostrar/ocultar sidebar con: <C-b>
 -- previsualizar un archivo con: space
 -- abrir el archivo con: l
+
+-- scrioll por lineas con: <C-e> y <C-y>
+-- scroll por pantalla con: <C-d> y <C-u>
