@@ -1,4 +1,6 @@
 -- ajuster de ui vscode
+-- copilot CLI en la terminal
+-- transparencia del vscode
 -- manejo de la terminal, abrir nueva, abrir en la misma, cerrar, moverse entre ellas, volver al codigo.
 -- apertura de la busqueda
 -- por alguna razon no me formatea los lua en pc del trabajo, en la casa si lo hace
@@ -15,6 +17,7 @@
 -- formateo en neovim
 -- por alguna razon el centrado con zz despues de <C-d> y <C-u> no funciona en vscode
 -- el scroll por lineas en vscode no desplaza el cursor, lo deja en el mismo lugar y solo mueve la pantalla
+-- cuando abro la lista desplegable para insertar una importacion que falta no tiene en cuenta el texto que ya esta escrito en la linea, sino que al aceptar incerta lo faltante a partir del cursor por lo que queda texto duplicado
 -----------------------------
 -- Comprobación para determinar si estamos en VSCode
 local in_vscode = vim.g.vscode ~= nil
@@ -165,7 +168,7 @@ end
 ------------------------------
 --- Splits
 -- Create splits
-if condition then
+if in_vscode then
     vim.keymap.set({'n', 'x'}, '<leader>v', '<Cmd>Vsplit<CR>', {
         desc = 'Vertical split'
     })
@@ -244,3 +247,5 @@ vim.keymap.set({"n", "o", "x"}, "b", "<cmd>lua require('spider').motion('b')<CR>
 
 -- scrioll por lineas con: <C-e> y <C-y>
 -- scroll por pantalla con: <C-d> y <C-u>
+
+-- abrir el modal de copilot con: <C-i> en insert mode
