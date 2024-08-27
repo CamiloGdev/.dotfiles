@@ -5,6 +5,8 @@
 1. Instalar winget
 2. Instalar PowerShell 7
 3. Instalar Git
+4. Instalar PowerToys de windows
+5. Instalar TranslucenTB
 
 ## Instalar AutoHOtKey
 

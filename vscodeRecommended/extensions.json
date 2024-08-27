@@ -1,9 +1,13 @@
 {
 	"recommendations": [
+		"asvetliakov.vscode-neovim",
 		"ryuta46.multi-command",
 		"drcika.apc-extension",
 		"Catppuccin.catppuccin-vsc",
 		"yinfei.luahelper",
-		"asvetliakov.vscode-neovim"
+		"biomejs.biome",
+		"streetsidesoftware.code-spell-checker",
+		"usernamehw.errorlens",
+		"streetsidesoftware.code-spell-checker-spanish"
 	]
 }

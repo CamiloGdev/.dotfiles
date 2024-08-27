@@ -1,31 +1,18 @@
--- agregar los settings relevantes al respaldo del repo
--- colores del explorador de archivos
--- colores del fondo de las scrollbars
--- ajuster de ui vscode
 -- copilot CLI en la terminal
--- transparencia del vscode
--- manejo de la terminal, abrir nueva, abrir en la misma, cerrar, moverse entre ellas, volver al codigo.
+-- manejo de la terminal,  cerrar, moverse entre ellas, volver al codigo.sin cerrar  o minimizar
 -- apertura de la busqueda
 -- por alguna razon no me formatea los lua en pc del trabajo, en la casa si lo hace
--- remapeos para redimencionar los splits directamente con vscode, como en tmux
 -- poder usar nvim en los imputs de vscode, como el editor de symbol o el de commit message, etc...
--- manejo correcto de copilot en vscode
--- manejo correcto de copilot en neovim
--- neogit para neovim
--- tmux para neovim
--- para le ejecucion de comandos procurar usar en este orden de prioridad: <Cmd>, :, vim.cmd; en terminos de rendiminento
--- como funciona el zc en neovim
--- vim en la terminal de windows y de vscode
--- autocompleta en neovim
--- formateo en neovim
 -- por alguna razon el centrado con zz despues de <C-d> y <C-u> no funciona en vscode
 -- el scroll por lineas en vscode no desplaza el cursor, lo deja en el mismo lugar y solo mueve la pantalla
--- cuando abro la lista desplegable para insertar una importacion que falta no tiene en cuenta el texto que ya esta escrito en la linea, sino que al aceptar incerta lo faltante a partir del cursor por lo que queda texto duplicado
+-- optimización de windows
 -----------------------------
--- Comprobación para determinar si estamos en VSCode
+-- For executing commands, try to use in this order of priority: <Cmd>, :, vim.cmd; in terms of performance
+
+-- Check to determine if we are in VSCode
 local in_vscode = vim.g.vscode ~= nil
 
--- Carga el módulo de VSCode solo si estamos en VSCode
+-- Load the VSCode module only if we are in VSCode
 local vscode = in_vscode and require('vscode') or nil
 
 -- Simplified function to handle any action in both VSCode and Neovim
