@@ -1,3 +1,6 @@
+-- agregar los settings relevantes al respaldo del repo
+-- colores del explorador de archivos
+-- colores del fondo de las scrollbars
 -- ajuster de ui vscode
 -- copilot CLI en la terminal
 -- transparencia del vscode
