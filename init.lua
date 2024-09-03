@@ -1,8 +1,5 @@
---- Install lazy.nvim
-require("config.lazy")
+--- Load config folder
+require("config")
 
---- Load remaps
-require("camilodev.remaps")
-
---- Load options
-require("camilodev.options")
+--- Load camilodev configs
+require("camilodev")

@@ -27,6 +27,10 @@ end
 -- Set space as the leader key
 vim.g.mapleader = " "
 
+-----------------------------
+-- Open Netrw directory listing
+vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
+
 -------------------------------
 -- Exit insert mode with jk
 
