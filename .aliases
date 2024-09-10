@@ -1,0 +1,49 @@
+# se agrega dot al inicio del comando para que no tenga efecto, es decir que es un alias que NO se desea usar
+
+# dir
+alias ..="cd .."
+alias ...="cd ../.."
+alias ls="exa --icons"
+alias dir="exa --icons -lh"
+alias ll="exa -l --icons"
+alias la="exa -la --icons"
+alias tree="exa --icons --tree -L 1 -I node_modules"
+alias tt="exa --icons --tree --level=2 --long "
+
+# Jumps
+alias ~="cd ~"
+alias tmp="cd ~/Downloads/tmp"
+alias dotfiles="cd ~/.dotfiles"
+alias cdc="cd ~/Code"
+alias cdw="cdc; cd work"
+alias cdl="cdc; cd learn"
+
+# git
+alias gaa="git add -A"
+alias gc="git commit"
+alias gca="git add --all && git commit --amend --no-edit"
+alias gco="git checkout"
+alias gd="dot git pretty-diff"
+alias gs="git status -sb"
+alias gf="git fetch --all -p"
+alias gps="git push"
+alias gpsf="git push --force"
+alias gpl="git pull --rebase --autostash"
+alias gb="git branch"
+alias gl="git log --pretty"
+alias gitlog="git log --graph --pretty='%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all"
+alias glast="git log -1 HEAD --stat"
+
+# OTROS
+alias cls="clear"
+alias grep="grep --color"
+alias cat="bat"
+alias diff="icdiff"
+
+# EDITAR
+alias i.="dot idea $PWD &>/dev/null &"
+alias c.="code $PWD &>/dev/null &"
+alias ci.="dot code-insiders $PWD &>/dev/null &"
+alias codi="dot code-insiders"
+alias o.="open ."
+alias vim="nvim"

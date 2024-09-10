@@ -1,0 +1,82 @@
+-instalar Nerd Fonts
+	-> Cascadia Code (Para vscode, en github)
+	-> MesloLGS NF (recomendada para la PL10K, en repo p10k)
+	-> Victor mono (cursivas bonitas, https://rubjo.github.io/victor-mono/)
+	-> JetBrains Mono (https://www.jetbrains.com/lp/mono/)
+	-> Dank Mono (de pago, en mi drive)
+	-> Fira Code (en github)
+
+-instalar VS code, sincronizar ajustes.
+
+-instalar WSL2 (https://docs.microsoft.com/en-us/windows/wsl/install)
+	-> verificar uso de WSL2
+	-> actualizar kernel
+
+-instalar Windows terminal, configurar el tema editando el fichero config con los colores deseados
+	+cambiar el start directory de Ubuntu en la terminal de windows (/home/tu_usuario)
+	+Fuente para la consola
+		->MesloLGS NF (recomendada para la PL10K)
+	+tamaño de fuente 11
+	+espesor de fuente normal
+	+estilo de texto intenso negrita con colores brillantes
+	+ notificación flash, no campana
+	+tema de terminal
+		-> Moonlight II (el mejor)
+		-> nord
+		-> Monokai Pro
+	+fondo con color morado muy oscuro
+
+-(opcional) asignar el directorio \wsl$ como una unidad de red
+	+abrir el en el explorador de windows-> (\\wsl$)
+	+clic derecho en la carpeta de la distribución deseada, seleccionar (Conectar anidad de red), aceptar
+
+-actualizar Ubuntu
+	+sudo apt-get update
+	+sudo apt-get upgrade
+	+sudo apt-get install curl git
+
+-clonamos el repo con los dotfiles en el home/.dotfiles
+	->(git clone https://github.com/chcamilog/dotfiles.git ~/.dotfiles)
+
+-ejecutamos el script (bash install.sh), este realiza lo siguiente (detalles dentro del script)
+	-> instala paquetería esencial
+	-> instala Oh-my-zsh
+	->-instala POWERLEVEL10K, comando para configurar de nuevo (p10k configure)
+	-> instala plugins de zsh
+	-> instala fzf
+	-> ejecuta stow para linkear los dotfiles
+		*linkea .zshrc que contiene el tema, los plugins, etc...
+		*linkea .gitconfig
+		*linkea p10k.zsh
+	-> instala NODE con control de versiones *(https://github.com/nvm-sh/nvm)
+
+
+-........instalar Docker ...............(incluir en esenciales)
+
+-(ya estan en los dotfiles)configurar git, configurar usuarios y correo
+	+git config --global user.name "Camilo Galeano"
+	+git config --global user.email chcamilog@gmail.com
+	+git config --global core.editor "code --wait" (VS Code como editor por defecto de git)
+	+git config --global init.defaultBranch main (rama MAIN por defecto)
+	+git config --global -e (editar archivo de config)
+	+comprobar configuración-> (git config --list)
+
+- (opcional) instalar plugin git Flow para la terminal / git cz (https://www.npmjs.com/package/git-cz)
+		->instalar de forma global-> (npm install -g commitizen git-cz)-> (commitizen init git-cz --save-dev --save-exact)
+		->instalar de forma local en el proyecto-> (npm install -g commitizen)-> (npm install --save-dev git-cz)-> configurar el package.json
+
+-(opcional) Instalar paquete de idioma
+	+(sudo apt-get install language-pack-es language-pack-es-base)
+	+(sudo update-locale LANG=es_CO.UTF-8)
+
+-(opcional) instalar otras versiones de node.js ({https://docs.microsoft.com/es-es/windows/dev-environment/javascript/nodejs-on-wsl})
+	+opcional Instalar pnpm, alternativa a npm (curl -fsSL https://get.pnpm.io/install.sh | PNPM_VERSION=7.0.0-rc.7 sh -)
+	+instalar la version mas actual de node-> (nvm install node)
+	+para la versión-> (nvm use --<version_deseada>), ej: nvm use v8.2.1
+	+Listar todas las versiones de Node.js disponibles> (nvm ls-remote)
+
+...-Configurar Tmux
+
+..... configurar el banner
+
+..... cambiar el fondo de la terminal

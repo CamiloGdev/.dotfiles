@@ -20,6 +20,7 @@
 * [FlowLauncher](https://www.flowlauncher.com/), con winget
 * [Discord](https://discord.com/)
 * [VLC](https://www.videolan.org/vlc/)
+* [Notion](https://www.notion.so/desktop)
 
 ## Personalización del Sistema
 
@@ -28,6 +29,7 @@
    * [Cascadia Code](https://github.com/microsoft/cascadia-code/releases)
    * FiraCode Mono - [Nerd Fonts](https://www.nerdfonts.com/font-downloads)
    * MesloLGS NF - [Nerd Fonts](https://www.nerdfonts.com/font-downloads)
+3. Color de la barra de tareas: `#727293`
 
 ## Configuración de `AutoHOtKey`
 
