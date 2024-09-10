@@ -3,24 +3,33 @@
 ; ! Alt
 ; + Shift
 ; # Win
-; < Left
-; > Right
 
-; Vocales minuscualas y ñ
-!a:: Send á    ; Alt+a = á
-!e:: Send é    ; Alt+e = é
-!i:: Send í    ; Alt+i = í
-!o:: Send ó    ; Alt+o = ó
-!u:: Send ú    ; Alt+u = ú
-!n:: Send ñ    ; Alt+n = ñ
-!+n::Send Ñ    ; Shift+Alt+n -> Ñ
+; Vocales minúsculas y ñ
+!a:: Send "á"    ; Alt+a = á
+!e:: Send "é"    ; Alt+e = é
+!i:: Send "í"    ; Alt+i = í
+!o:: Send "ó"    ; Alt+o = ó
+!u:: Send "ú"    ; Alt+u = ú
 
-; Simbolos
-!/:: Send {¿}{?}{left 1}    ; Alt+/ = ¿?
-!1:: Send {¡}{!}{left 1}    ; Alt+1 = ¡!
+; Mapeo de letra ñ con Alt+n
+!n:: Send "ñ"    ; Alt+n = ñ
+!+n::Send "Ñ"    ; Shift+Alt+n -> Ñ
 
-; Buscando más información he conseguido remapear yo mismo el punto y coma y los dos puntos a las teclas que quería, sin embargo, no consigo situar la ñ en la tecla de [;:] debido a que al establecer esos símbolos como ñ siempre que escribo un ; o un : sale una ñ.
-; +,:: Send {;}
-; +.:: Send {:}
-; !,:: Send {<}
-; !.:: Send {>} 
+
+; Símbolos
+!/:: Send "{¿}{?}{Left 1}"    ; Alt+/ = ¿?
+!1:: Send "{¡}{!}{Left 1}"    ; Alt+1 = ¡!
+
+;-----------------------------------
+;Mapeo opcional de la ñ con la tecla de [;:]
+; Este mapeo permite escribir la ñ con la tecla de [;:] y reubica los símbolos ; y : a las teclas de , y .
+
+; Remapeo de ; y :
+; +,:: Send ";"    ; Shift+, = ;
+; +.:: Send ":"    ; Shift+. = :
+; !,:: Send "{Text}<"    ; Alt+, = <
+; !.:: Send "{Text}>"    ; Alt+. = >
+
+; Mapeo de letra ñ con en la tecla de [;:]
+; SC027:: Send "ñ"    ; Mapeo de tecla ; a ñ
+; +SC027:: Send "Ñ"   ; Shift + ; = Ñ
