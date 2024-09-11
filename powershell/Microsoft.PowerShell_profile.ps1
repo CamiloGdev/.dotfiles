@@ -28,27 +28,46 @@ $symlink = Get-Item $currentScriptPath
 
 # Comprobar si el archivo tiene la propiedad 'Target' (lo que significa que es un enlace simbólico)
 if ($symlink.PSIsContainer -eq $false -and $symlink -and $symlink.PSDrive.Provider.Name -eq 'FileSystem' -and $symlink.Target) {
-    # Obtener la ruta real del archivo al que apunta el enlace simbólico
-    $realProfilePath = $symlink | Select-Object -ExpandProperty Target
-    Write-Host "El archivo es un enlace simbólico. La ruta real es: $realProfilePath"
-} else {
-    # Si no es un enlace simbólico, usar la ruta actual
-    $realProfilePath = $currentScriptPath
-    Write-Host "El archivo no es un enlace simbólico. La ruta es: $realProfilePath"
+	# Obtener la ruta real del archivo al que apunta el enlace simbólico
+	$realProfilePath = $symlink | Select-Object -ExpandProperty Target
+	# Write-Host "El archivo es un enlace simbólico. La ruta real es: $realProfilePath"
+}
+else {
+	# Si no es un enlace simbólico, usar la ruta actual
+	$realProfilePath = $currentScriptPath
+	# Write-Host "El archivo no es un enlace simbólico. La ruta es: $realProfilePath"
 }
 
 # Obtener el directorio del archivo de perfil real
 $profileDirectory = Split-Path -Parent $realProfilePath
 
-# Ruta relativa a aliases.ps1
-$aliasesPath = Join-Path $profileDirectory "aliases.ps1"
+# Ruta relativa a aliases/aliases.ps1
+$aliasesPath = Join-Path $profileDirectory "aliases/aliases.ps1"
 
 # Verificar si el archivo aliases.ps1 existe y cargarlo
 if (Test-Path $aliasesPath) {
-    . $aliasesPath
-    Write-Host "Aliases cargados desde: $aliasesPath"
-} else {
-    Write-Host "No se encontró el archivo de alias: $aliasesPath"
+	. $aliasesPath
+}
+else {
+	Write-Host "No se encontró el archivo de alias: $aliasesPath"
+}
+
+# Ruta relativa a aliases/gitAliases.ps1
+$gitAliasesPath = Join-Path $profileDirectory "aliases/gitAliases.ps1"
+if (Test-Path $gitAliasesPath) {
+	. $gitAliasesPath
+}
+else {
+	Write-Host "No se encontró el archivo de alias: $gitAliasesPath"
+}
+
+# Ruta relativa a aliases/dirsAliases.ps1
+$dirsAliasesPath = Join-Path $profileDirectory "aliases/dirsAliases.ps1"
+if (Test-Path $dirsAliasesPath) {
+	. $dirsAliasesPath
+}
+else {
+	Write-Host "No se encontró el archivo de alias: $dirsAliasesPath"
 }
 # ---------- END cargar aliases ----------
 

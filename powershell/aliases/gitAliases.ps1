@@ -1,21 +1,6 @@
-# ---------- Aliases for NeoVim ----------
-# Set aliases for the Neovim executable
-Set-Alias vim nvim
-
-# ---------- Other aliases ----------
-# Others aliases
-Set-Alias ll ls
-Set-Alias g git
-Set-Alias grep findstr
-
-# Utilities
-function which ($command) {
-	Get-Command -Name $command -ErrorAction SilentlyContinue |
-		Select-Object -ExpandProperty Path -ErrorAction SilentlyContinue
-}
-
-# ---------- START Git aliases ----------
 # Simple aliases using Set-Alias
+Set-Alias g git
+
 function Get-GitAddPatch {
     git add -p $args
 }
@@ -144,4 +129,3 @@ function glast {
 function glog {
     git log --graph --topo-order --pretty='%w(100,0,6)%C(yellow)%h%C(bold)%C(black)%d %C(cyan)%ar %C(green)%an%n%C(bold)%C(white)%s %N' --abbrev-commit
 }
-# ---------- END Git aliases ----------
