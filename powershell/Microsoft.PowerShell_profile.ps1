@@ -19,6 +19,13 @@ Set-PSReadLineOption -PredictionViewStyle ListView
 Import-Module PSFzf
 Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+f' -PSReadlineChordReverseHistory 'Ctrl+r'
 
+# Configuración de fnm (Fast Node Manager) para gestionar versiones de Node.js
+# Ajusta el entorno de PowerShell para cambiar automáticamente la versión de Node.js
+# al entrar en directorios con archivos .nvmrc o .node-version, usando fnm.
+# Esto modifica las variables de entorno (como PATH) para que la versión correcta de Node.js
+# esté disponible según el directorio en el que te encuentres.
+fnm env --use-on-cd --shell power-shell | Out-String | Invoke-Expression
+
 # ---------- START cargar aliases ----------
 # Obtener la ruta del archivo actual
 $currentScriptPath = $MyInvocation.MyCommand.Path
