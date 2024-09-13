@@ -1,4 +1,6 @@
-﻿!+7::Send "&&="                             ; Shift+Alt+7   &&=         AND Assignment
+﻿#NoTrayIcon
+
+!+7::Send "&&="                             ; Shift+Alt+7   &&=         AND Assignment
 !+\::Send "||="                             ; Shift+Alt+\   ||=         OR Assignment
 !+/::Send "??="                             ; Shift+Alt+/   ??=         Nullish Coalescing Assignment
 
@@ -23,4 +25,3 @@
 ; !\::Send "||"                               ; Alt+\         ||          Logical OR
 ; !7::Send "&&"                               ; Alt+7         &&          Logical AND
 ; !8::Send "**"                               ; Alt+8         **          Math Power
-

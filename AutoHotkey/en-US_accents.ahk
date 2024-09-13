@@ -1,4 +1,6 @@
-﻿; Modificadores
+﻿#NoTrayIcon
+
+; Modificadores
 ; ^ Ctrl
 ; ! Alt
 ; + Shift
