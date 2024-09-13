@@ -19,7 +19,7 @@ sudo apt-get install -y \
     stow
 
 #DETALLES DE PAQUETES INSTALADOS
-    # sudo (complemento para usuario root)
+    # sudo (complemento para usuario root puede no estar en todas las distros)
     # bash zsh (Shells)
     # zgen (instalador plugins zsh)
     # wget (descarga con links)
