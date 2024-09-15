@@ -2,12 +2,12 @@
 
 ## Configuración de `Neovim` en Windows
 
-1. [Instalar Neovim](https://github.com/neovim/neovim/blob/master/INSTALL.md#windows), con winget
+1. [Instalar Neovim](https://github.com/neovim/neovim/blob/master/INSTALL.md#windows), con winget, **lo hace el script de instalación**
 2. Clonar repositorio de configuraciones:
 
     [Ir al Repositorio](https://github.com/CamiloGdev/neovim-config)
 
-3. Crear enlace simbólico de la carpeta `nvim` en la ruta de configuración de Neovim:
+3. Crear enlace simbólico de la carpeta `nvim` en la ruta de configuración de Neovim: **lo hace el script de symlinkDotfiles.ps1**
     Para crear el enlace simbólico en Windows, se debe ejecutar PowerShell como administrador y ejecutar el siguiente comando:
 
    ```powershell

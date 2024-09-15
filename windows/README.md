@@ -9,7 +9,7 @@
 * [Revo Uninstaller](https://www.revouninstaller.com/es/revo-uninstaller-free-download/)
 * [Brave](https://brave.com/)
 * [Firefox](https://www.mozilla.org/es-ES/firefox/new/)
-* Windows Terminal, con microsoft store
+* [Windows Terminal](https://www.microsoft.com/store/productId/9N0DX20HK701?ocid=pdpshare), con microsoft store
 * [PowerShell 7](https://learn.microsoft.com/es-es/powershell/scripting/install/installing-powershell-on-windows?view=powershell-7.4#install-powershell-using-winget-recommended), con winget
 * [Visual Studio Code](https://code.visualstudio.com/)
 * [AutoHotKey](https://www.autohotkey.com/)
@@ -18,13 +18,13 @@
 * [Notion](https://www.notion.so/desktop)
 * [Rust](https://www.rust-lang.org/es/learn/get-started)
 
-* [scoop](https://scoop.sh/), con PowerShell
-* [Git](https://git-scm.com/download/win), con winget
-* [Oh My Posh](https://ohmyposh.dev/docs/installation/windows#installation), con winget
-* [Neovim](https://github.com/neovim/neovim/blob/master/INSTALL.md#winget), con winget
-* [Node.js](https://nodejs.org/en/download/package-manager), con winget a través del administrador de versiones fnm
-* [FlowLauncher](https://www.flowlauncher.com/), con winget
-* [Python](https://www.python.org/downloads/), con winget
+* [scoop](https://scoop.sh/), con PowerShell, **lo hace el script de instalación**
+* [Git](https://git-scm.com/download/win), con winget, **lo hace el script de instalación**
+* [Oh My Posh](https://ohmyposh.dev/docs/installation/windows#installation), con winget, **lo hace el script de instalación**
+* [Neovim](https://github.com/neovim/neovim/blob/master/INSTALL.md#winget), con winget, **lo hace el script de instalación**
+* [Node.js](https://nodejs.org/en/download/package-manager), con winget a través del administrador de versiones fnm, **lo hace el script de instalación**
+* [FlowLauncher](https://www.flowlauncher.com/), con winget, **lo hace el script de instalación**
+* [Python](https://www.python.org/downloads/), con winget, **lo hace el script de instalación**
 
 ## Personalización del Sistema
 

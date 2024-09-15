@@ -1,3 +1,18 @@
+<#
+.SYNOPSIS
+This script creates symbolic links for the PowerShell profile and the Neovim configuration folder.
+
+.DESCRIPTION
+The script checks if it is running with administrator privileges. If not, it displays an error message and exits. If running as an administrator, it proceeds to create symbolic links for the PowerShell profile and the Neovim configuration folder.
+
+The script first verifies if the 'Microsoft.PowerShell_profile.ps1' file exists in the dotfiles directory. If it exists, it creates a symbolic link for the PowerShell profile. If the PowerShell profile folder does not exist, it creates the folder first. If there is already a file or symbolic link at the profile path, it removes it before creating the symbolic link.
+
+Next, the script checks if the 'nvim' folder exists in the dotfiles directory. If it exists, it creates a symbolic link for the Neovim configuration folder in the AppData\Local\nvim directory. If there is already a folder or symbolic link at the nvim path, it removes it before creating the symbolic link.
+
+.NOTES
+This script must be run with administrator privileges.
+#>
+
 $adminCheck = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)
 
 if (-Not $adminCheck) {

@@ -20,19 +20,19 @@
 
 Es recomendable instalar primero los plugins antes de generar el enlace simbólico para que las configuraciones contenidas en el perfil no de error al iniciar la terminal
 
-1. Instalar [`scoop` command-line installer for Windows] para instalar paquetes sin requerir elevación de permisos de administrador
+1. Instalar [`scoop` command-line installer for Windows] para instalar paquetes sin requerir elevación de permisos de administrador, **lo hace el script de instalación**
    * [Scoop](https://scoop.sh/)
-2. Instalar algunos paquetes importantes con `scoop`: `scoop install curl sudo jp`
-3. Instalar fzf con scoop: `scoop install fzf`
-4. Instalar módulo de PowerShell 7 para fzf: `Install-Module -Name PSFzf -Scope CurrentUser -Force`
+2. Instalar algunos paquetes importantes con `scoop`: `scoop install curl sudo jp` **lo hace el script de instalación**
+3. Instalar fzf con scoop: `scoop install fzf` **lo hace el script de instalación**
+4. Instalar módulo de PowerShell 7 para fzf: `Install-Module -Name PSFzf -Scope CurrentUser -Force` **lo hace el script de instalación**
    * Establecer las opciones de fzf en el perfil de PowerShell 7: `Set-PsFzfOption -PSReadlineChordProvider 'Ctrl+f' -PSReadlineChordReverseHistory 'Ctrl+r'`
    Nota: Esta configuración ya está incluida en el archivo de configuración del perfil.
-5. Instalar módulo Directory Jumper `z`: `Install-Module -Name z -Force`
-6. Instalar módulo de iconos para la terminal `Terminal-Icons` desde PSGallery: `Install-Module -Name Terminal-Icons -Repository PSGallery`
+5. Instalar módulo Directory Jumper `z`: `Install-Module -Name z -Force` **lo hace el script de instalación**
+6. Instalar módulo de iconos para la terminal `Terminal-Icons` desde PSGallery: `Install-Module -Name Terminal-Icons -Repository PSGallery`, **lo hace el script de instalación**
    * Importar módulo de iconos en el archivo de perfil: `Import-Module Terminal-Icons`
    Nota: Esta configuración ya está incluida en el archivo de configuración del perfil.
 
-7. Crear enlace simbólico para el archivo de configuración del perfil de PowerShell 7:
+7. Crear enlace simbólico para el archivo de configuración del perfil de PowerShell 7:, **lo hace el script de symlinkDotfiles.ps1**
 
    Antes de establecer el link simbólico para la configuración del perfil, la ruta al archivo debe existir, es decir la carpeta; para crear la carpeta ejecutamos el siguiente comando:
       El comando crea la carpeta para el archivo $PROFILE en caso de que no exista, y en caso de que ya exista arroja el error.
@@ -53,7 +53,7 @@ Es recomendable instalar primero los plugins antes de generar el enlace simbóli
       Remove-Item -Path $PROFILE
       ```
 
-8. instalación y configuración inicial de [Oh My Posh](https://ohmyposh.dev/docs/installation/windows#installation), con winget
+8. instalación y configuración inicial de [Oh My Posh](https://ohmyposh.dev/docs/installation/windows#installation), con winget, **lo hace el script de instalación**
 
 9. Cambio de tema de Oh My Posh
    * Usar comando para visualizar los temas disponibles en la galería: `Get-PoshThemes`

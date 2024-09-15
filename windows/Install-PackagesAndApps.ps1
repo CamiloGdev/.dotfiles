@@ -90,9 +90,71 @@ $env:Path = [System.Environment]::GetEnvironmentVariable('Path', 'Machine') + ";
 # Recargar el perfil actual de PowerShell
 ". $PROFILE" | Invoke-Expression
 
+# --- START Instalación de Node.js con fnm ---
+
 # download and install Node.js
-# Separador visual para la instalación de Scoop
 Write-Host "==================================================" -ForegroundColor Cyan
 Write-Host "Instalacion del programa: Node" -ForegroundColor Cyan
-"fnm use --install-if-missing 20" | Invoke-Expression
+
+# Definir la versión de Node.js que se desea instalar
+$NodeVersion = "20"
+
+$nodeCommand = Get-Command node -ErrorAction SilentlyContinue
+
+# Función para verificar si Node.js está instalado
+function NodeInstalled {
+    return $null -ne $nodeCommand
+}
+
+# Función para verificar si Node.js está instalado con fnm
+function NodeInstalledWithFNM {
+    if ( $null -ne $nodeCommand) {
+        return $nodeCommand.Source -match "fnm"
+    }
+    return $false
+}
+
+# Función para obtener la versión de Node.js instalada actualmente
+function Get-NodeVersion {
+    $nodeVersionOutput = node --version 2>$null
+    if ($nodeVersionOutput) {
+        return $nodeVersionOutput.TrimStart("v")
+    }
+    return $null
+}
+
+# Verificar si Node.js está instalado
+if (NodeInstalled) {
+    Write-Host "Node.js está instalado."
+
+    # Verificar si Node.js está instalado con fnm
+    if (NodeInstalledWithFNM) {
+        Write-Host "Node.js está instalado con fnm."
+
+        # Obtener la versión instalada actualmente
+        $currentVersion = Get-NodeVersion
+
+        if ($currentVersion -eq $NodeVersion) {
+            Write-Host "La versión $NodeVersion de Node.js ya está instalada y activa."
+        }
+        else {
+            Write-Host "La versión instalada es $currentVersion, pero se necesita la versión $NodeVersion."
+            Write-Host "Instalando la versión $NodeVersion con fnm..."
+            "fnm use --install-if-missing $NodeVersion" | Invoke-Expression
+        }
+    }
+    else {
+        Write-Host "Error: Node.js está instalado sin fnm." -ForegroundColor Red
+        Write-Host "Por favor, desinstala la versión actual de Node.js manualmente antes de continuar." -ForegroundColor Yellow
+        Write-Host "Una vez desinstalado, puedes instalar la versión $NodeVersion de Node.js con el siguiente comando:" -ForegroundColor Cyan
+        $commandMessage = "fnm use --install-if-missing $NodeVersion"
+        Write-Host "`$ $commandMessage" -ForegroundColor Cyan
+    }
+}
+else {
+    Write-Host "Node.js no está instalado. Instalando Node.js versión $NodeVersion con fnm..."
+    "fnm use --install-if-missing $NodeVersion" | Invoke-Expression
+}
+
 Write-Host "==================================================" -ForegroundColor Cyan
+# --- END Instalación de Node.js con fnm ---
