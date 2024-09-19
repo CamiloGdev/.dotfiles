@@ -8,7 +8,6 @@
 -- optimización de windows
 -----------------------------
 -- For executing commands, try to use in this order of priority: <Cmd>, :, vim.cmd; in terms of performance
-
 -- Check to determine if we are in VSCode
 local in_vscode = vim.g.vscode ~= nil
 
@@ -184,6 +183,15 @@ if in_vscode then
     })
     vim.keymap.set({'n', 'x'}, '<C-k>', '<Cmd>call VSCodeNotify("workbench.action.focusAboveGroup")<CR>', {
         desc = 'Move to the up split'
+    })
+end
+
+-----------------------
+-- vscode copilot keymaps
+--
+if in_vscode then
+    vim.keymap.set({'n', 'x'}, '<leader><C-i>', '<Cmd>call VSCodeNotify("inlineChat.start")<CR>', {
+        desc = 'Move to the left split'
     })
 end
 
