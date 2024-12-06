@@ -8,15 +8,18 @@ sudo apt-get upgrade -y
 #INSTALACION DE PAQUETES ESENCIALES
 sudo apt-get install -y \
     bash zsh zgen sudo wget g++ make gnupg gnupg2 ca-certificates lsb-release \
-    vim nano libbrotli-dev cmake \
+    vim neovim nano libbrotli-dev cmake \
     ccze jq jc less catimg nnn ranger zoxide \
     tldr httpie man googler ddgr neofetch screenfetch \
     htop ncdu icdiff \
     unzip zip bzip2 p7zip-full \
     locales locales-all \
-    bat exa \
+    bat eza \
     sl lolcat cmatrix ffmpeg \
     stow
+
+#instalamos fzf, completado inteligente con búsqueda avanzada
+sudo apt-get install -y fzf
 
 #DETALLES DE PAQUETES INSTALADOS
     # sudo (complemento para usuario root puede no estar en todas las distros)
@@ -32,7 +35,7 @@ sudo apt-get install -y \
     # jc (formatea un JSON obtenido, o convierte algo a JSON)
     # less (paginador para la consola)
     # catimg (ver imagenes en el terminal)
-    # nnn ranger (moverse poro ficheros)
+    # nnn ranger (moverse por ficheros)
     # zoxide (lleva a rutas segun historial, es como el z de oh my zsh)
     # man (ayudas para comandos linux)
     # tldr (es un "man" resumido, con ejemplos)
@@ -56,29 +59,18 @@ sudo apt-get install -y \
 sudo ln -s /usr/bin/batcat /usr/local/bin/bat
 
 # Oh-my-zsh
-yes | sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# la instalación establece zsh como shell por defecto
+yes | sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # instalar plugins para zsh (quedan en la carpeta CUSTOM de oh my zsh)
 # (zsh-autosuggestions): Sugerencias basadas en el historial
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 # (zsh-syntax-highlighting): Resaltado de sintaxis para comandos
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-# (zsh-completions): Autocompletado mejorado para comandos
+# (zsh-completions): Auto completado mejorado para comandos, agrega auto completado adicional que no esta incluido en el auto completado de comandos que trae zsh
 git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 
-#instalar POWERLEVEL10K THEME
-#con el stow se agrega la linea al .zshrc (source ~/powerlevel10k/powerlevel10k.zsh-theme) para ser activado
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-
-#instalamos fzf, completado inteligente con búsqueda avanzada
-sudo apt-get install -y fzf
-
-# Node/NPM/PNPM install
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash #Instala gestor de ver de node, nvm
-source $HOME/.zshrc
-source $HOME/.nvm/nvm.sh
-nvm install node #instala la version estable de node
-npm install -g #Instala algunos paquetes importantes de node, por aghora no hay ninguno que considere importante
+# instalar y establecer el THEME deseado
 
 #comando stow para linckear los archivos de configuración
 #analiza directoiros en dotfiles, segun estos borra los del sistema y linckea a los de dotfiles.
@@ -89,3 +81,5 @@ cd
 
 # ejecutar zsh
 zsh
+
+# instalar node con el gestor de versiones fnm pero estando en zsh
