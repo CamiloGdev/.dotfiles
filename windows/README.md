@@ -53,6 +53,17 @@
 2. Esperar carga de configuraciones y atajos personalizados
 3. Instalar plugins recomendados (ubicados en la carpeta vscodeRecommended)
 
+## instalar Linux ubuntu con WSL2
+
+   Revisar el archivo `README.md` en la carpeta `linux` para la instalación de WSL2 y configuración de la distribución de Linux
+
+## (opcional) asignar el directorio \wsl$ como una unidad de red
+
+Esto sirve para poder acceder a los archivos de la distribución de Linux desde el explorador de windows
+
+1. abrir el en el explorador de windows-> (\\wsl$)
+2. clic derecho en la carpeta de la distribución deseada, seleccionar (Conectar anidad de red), aceptar
+
 ## Herramientas Adicionales
 
 1. Ejecutar [script de Cris Taitus](https://christitus.com/windows-utility-improved/), desactivar telemetría y configuraciones adicionales

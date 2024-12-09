@@ -71,6 +71,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
 
 # instalar y establecer el THEME deseado
+# ...
 
 #comando stow para linckear los archivos de configuración
 #analiza directoiros en dotfiles, segun estos borra los del sistema y linckea a los de dotfiles.
@@ -83,3 +84,4 @@ cd
 zsh
 
 # instalar node con el gestor de versiones fnm pero estando en zsh
+# ...
