@@ -73,13 +73,25 @@ git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zs
 # instalar y establecer el THEME deseado
 # ...
 
+## --------- STOW ---------
 #comando stow para linckear los archivos de configuración
 #analiza directoiros en dotfiles, segun estos borra los del sistema y linckea a los de dotfiles.
 cd $HOME/.dotfiles
-stow nvim
-stow zsh
+
+mkdir -p ~/.dotfiles/backups
+
+# crear directorio de configuración de nvim en caso de que no exista y linkear archivos de configuración
+mkdir -p ~/.config
+stow -R nvim -t ~
+
+# hacer backup de .zshrc y linkear el archivo de configuración desde dotfiles
+mv ~/.zshrc ~/.dotfiles/backups/
+stow -R zsh
+
+# reiniciar zsh para que se apliquen los cambios
 source $HOME/.zshrc
 cd
+## --------- STOW ---------
 
 # ejecutar zsh
 zsh

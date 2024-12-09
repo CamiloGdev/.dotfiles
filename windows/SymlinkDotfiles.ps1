@@ -28,7 +28,7 @@ $scriptPath = (Get-Location).Path
 $dotfilesPath = Split-Path -Parent $scriptPath
 
 # Rutas relativas a verificar
-$localNvimPath = Join-Path $dotfilesPath "nvim"
+$localNvimPath = Join-Path $dotfilesPath "nvim\.config\nvim"
 $psProfilePath = Join-Path $dotfilesPath "\powershell\Microsoft.PowerShell_profile.ps1"
 
 # Ruta a la carpeta de destino en AppData
