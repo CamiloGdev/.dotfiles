@@ -8,7 +8,7 @@
 
 ## Clonar Repositorio de Configuraciones
 
-   [Ir al Repositorio](https://github.com/CamiloGdev/neovim-config)
+   [Ir al Repositorio](https://github.com/CamiloGdev/.dotfiles)
 
 ## Ejecutamos el script (bash install.sh), este realiza lo siguiente (detalles dentro del script)
 

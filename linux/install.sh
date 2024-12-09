@@ -75,8 +75,9 @@ git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zs
 
 #comando stow para linckear los archivos de configuración
 #analiza directoiros en dotfiles, segun estos borra los del sistema y linckea a los de dotfiles.
-cd $HOME/.dotfiles/stow
-stow --target=$HOME *
+cd $HOME/.dotfiles
+stow nvim
+stow zsh
 source $HOME/.zshrc
 cd
 

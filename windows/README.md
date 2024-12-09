@@ -2,7 +2,7 @@
 
 ## Clonar Repositorio de Configuraciones
 
-   [Ir al Repositorio](https://github.com/CamiloGdev/neovim-config)
+   [Ir al Repositorio](https://github.com/CamiloGdev/.dotfiles)
 
 ## Lista de programas
 
