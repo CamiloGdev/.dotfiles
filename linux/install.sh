@@ -18,9 +18,6 @@ sudo apt-get install -y \
     sl lolcat cmatrix ffmpeg \
     stow
 
-#instalamos fzf, completado inteligente con búsqueda avanzada
-sudo apt-get install -y fzf
-
 #DETALLES DE PAQUETES INSTALADOS
     # sudo (complemento para usuario root puede no estar en todas las distros)
     # bash zsh (Shells)
@@ -57,6 +54,13 @@ sudo apt-get install -y fzf
 
 # Fix batcat -> bat
 sudo ln -s /usr/bin/batcat /usr/local/bin/bat
+
+#instalamos fzf, completado inteligente con búsqueda avanzada
+# se debe realizar la instalación manual de fzf por medio del script de instalación para obtener la última versión y tener acceso a los atajos de teclado de manera simple
+# clonar el repositorio de fzf en la carpeta .fzf
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+## Ejecutar el script de instalación
+yer | ~/.fzf/install
 
 # Oh-my-zsh
 # la instalación establece zsh como shell por defecto

@@ -135,7 +135,7 @@ eval "$(zoxide init zsh)"
 
 # fzf
 # verificar si fzf esta instalado y cargarlo
-[ -f ~/.fzf.zsh ] && source <(fzf --zsh)
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # fnm
 FNM_PATH="/home/camilodev/.local/share/fnm"
