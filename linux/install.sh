@@ -99,6 +99,3 @@ cd
 
 # ejecutar zsh
 zsh
-
-# instalar node con el gestor de versiones fnm pero estando en zsh
-# ...

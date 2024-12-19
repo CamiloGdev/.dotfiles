@@ -125,7 +125,7 @@ source ~/.dotfiles/.aliases
 autoload -U compinit && compinit
 
 #cambia el color de las sugerencias de autocompletado del plugin zsh-autosuggestions
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=4"
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=8"
 
 # zoxide
 # iniciar zoxide, complemento para moverse por rutas segun historial
@@ -145,5 +145,5 @@ if [ -d "$FNM_PATH" ]; then
 fi
 
 # GitHub Copilot Cli aliases
-# eval "$(github-copilot-cli alias -- "$0")"
-
+# Después de instalar GitHub Copilot CLI, se pueden usar los alias ejecutando el siguiente comando
+eval "$(gh copilot alias -- zsh)"
