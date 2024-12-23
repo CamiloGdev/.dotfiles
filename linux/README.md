@@ -3,6 +3,7 @@
 * instalación y configuración de tmux
 * configuración completa de neovim
 * instalar copilot para neovim
+* incorporar el script de stow como theprimeagen
 
 # Configuración de Linux
 
@@ -33,7 +34,7 @@
 [Instalación de fnm](https://github.com/Schniz/fnm?tab=readme-ov-file#installation)
 
 * Actualización:
-Actualizar fnm es casi lo mismo que instalarlo. Para evitar duplicaciones en tu archivo de configuración del shell, añade --skip-shell al comando de instalación.
+Actualizar fnm es casi lo mismo que instalarlo. Para evitar duplicaciones en tu archivo de configuración del shell, añade `--skip-shell` al comando de instalación.
 
 ## Configuración de `Neovim`
 
