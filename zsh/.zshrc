@@ -127,6 +127,9 @@ autoload -U compinit && compinit
 #cambia el color de las sugerencias de autocompletado del plugin zsh-autosuggestions
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=8"
 
+# Atajo de teclado para aceptar la sugerencia sin ejecutar el comando
+bindkey '^ ' autosuggest-accept
+
 # zoxide
 # iniciar zoxide, complemento para moverse por rutas segun historial
 eval "$(zoxide init zsh)"
@@ -147,3 +150,12 @@ fi
 # GitHub Copilot Cli aliases
 # Después de instalar GitHub Copilot CLI, se pueden usar los alias ejecutando el siguiente comando
 eval "$(gh copilot alias -- zsh)"
+
+PATH=~/.console-ninja/.bin:$PATH
+# pnpm
+export PNPM_HOME="/home/camilodev/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
