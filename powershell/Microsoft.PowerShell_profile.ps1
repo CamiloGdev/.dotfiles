@@ -12,8 +12,9 @@ Import-Module Terminal-Icons
 # Set the PSReadLine prediction view style to ListView
 Set-PSReadLineOption -PredictionViewStyle ListView
 
-# Set the PSReadLine prediction view style to ListView
-Set-PSReadLineOption -PredictionViewStyle ListView
+# Configuración de navegación con Ctrl+n y Ctrl+p
+Set-PSReadLineKeyHandler -Chord Ctrl+n -Function NextHistory
+Set-PSReadLineKeyHandler -Chord Ctrl+p -Function PreviousHistory
 
 # Set configuration for fzf, activation and shortcuts
 Import-Module PSFzf
