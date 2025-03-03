@@ -1,121 +1,177 @@
 {
-	/* VS code */
-	"editor.wordWrap": "on",
-	// "editor.wordWrapColumn": 80,
-	// "editor.wrappingIndent": "same",
-	"editor.lineNumbers": "relative",
-	"editor.rulers": [80, 88],
-	"editor.minimap.enabled": false,
-	"editor.stickyScroll.enabled": true,
-	"explorer.confirmDragAndDrop": true,
-	"files.autoSave": "afterDelay",
-	"editor.suggestSelection": "first",
-	"editor.smoothScrolling": true, //efecto suave scroll
-	"editor.guides.bracketPairs": true,
-	"editor.inlineSuggest.enabled": true, // lineas sin scroll horizontal
-	"workbench.tree.indent": 12,
-	"workbench.layoutControl.enabled": false,
-	"editor.showFoldingControls": "never",
-	"explorer.compactFolders": false,
-	"files.trimTrailingWhitespace": true, //quitar espacio en blanco al final de las lineas al guardar
-	"files.insertFinalNewline": true, //agregar una nueva linea al final al guardar
-	/* Barra de titulo y menu de windows */
-	"workbench.sideBar.location": "right",
-	"window.menuBarVisibility": "hidden",
-	"window.customTitleBarVisibility": "never",
-	"window.titleBarStyle": "native", //barra de titulo mas pequeña
-	"apc.electron": {
-		"titleBarStyle": "hidden"
-	},
-	"apc.font.family": "FiraCode Nerd Font Mono, Cascadia Mono NF",
-	"apc.menubar.compact": true,
-	"apc.activityBar": {
-		"position": "bottom",
-		"size": 35,
-		"itemMargin": 10
-	},
-	"apc.stylesheet": {
-		// ".monaco-editor .cursors-layer .cursor" : "background-image: linear-gradient(135deg, #8caaee 10%, #ca9ee6 100%)",
-		".monaco-editor .cursors-layer .cursor": "background-image: linear-gradient(135deg, #67D0FF 10%, #C45DFF 100%)"
-	},
-	"workbench.colorCustomizations": {
-		"terminalCursor.foreground": "#ca9ee6",
-		// "sideBar.background": "#292c3c"
-		// "sideBar.background": "#303446",
-		"editorOverviewRuler.background": "#303446"
-	},
-	"editor.overviewRulerBorder": false,
-	/* THEME */
-	"symbols.hidesExplorerArrows": false,
-	"workbench.iconTheme": "symbols",
-	"workbench.colorTheme": "Catppuccin Frappé",
-	/*  FUENTE */
-	"editor.fontFamily": "'Cascadia Mono NF', 'FiraCode Nerd Font Mono'",
-	"editor.fontLigatures": "'calt', 'ss01'", // cambiar itálica por cursiva en cascadia code
-	"editor.fontSize": 14,
-	"editor.fontWeight": "350", // grosor de fuente
-	/* CURSOR Y ESPACIADO */
-	"editor.detectIndentation": true,
-	// "editor.tabSize": 2,
-	"editor.lineHeight": 2.5,
-	"editor.cursorStyle": "line", //estilo del cursor
-	"editor.cursorBlinking": "expand", // tipo de parpadeo del cursor
-	"editor.cursorSmoothCaretAnimation": "on", //efecto suave cursor
-	"editor.renderWhitespace": "all", //punto en espacio en blanco
-	/* BIOME / PRETTIER and ESLINT  */
-	"editor.formatOnSave": true,
-	"[javascript][TypeScript][javascriptreact][typescriptreact][json][jsonc]": {
-		"editor.defaultFormatter": "biomejs.biome",
-		"editor.codeActionsOnSave": {
-			"quickfix.biome": "explicit",
-			"source.organizeImports": "explicit"
-		}
-		// "editor.detectIndentation": false,
-		// "editor.insertSpaces": true,
-		// "editor.tabSize": 2,
-	},
-	"[css][html]": {
-		"editor.codeActionsOnSave": {
-			// pendiente definir configuración probablemente con stylelint
-		}
-	},
-	/* anidación en el explorador de archivos */
-	"explorer.fileNesting.enabled": true,
-	"explorer.fileNesting.expand": false,
-	"explorer.fileNesting.patterns": {
-		"package.json": ".browserslist*, .circleci*, .commitlint*, .cz-config.js, .czrc, .dlint.json, .dprint.json, .editorconfig, .eslint*, .firebase*, .flowconfig, .github*, .gitlab*, .gitpod*, .huskyrc*, .jslint*, .lintstagedrc*, .markdownlint*, .node-version, .nodemon*, .npm*, .nvmrc, .pm2*, .pnp.*, .pnpm*, .prettier*, .release-please*.json, .releaserc*, .sentry*, .simple-git-hooks*, .stackblitz*, .styleci*, .stylelint*, .tazerc*, .textlint*, .tool-versions, .travis*, .versionrc*, .vscode*, .watchman*, .xo-config*, .yamllint*, .yarnrc*, Procfile, apollo.config.*, appveyor*, azure-pipelines*, bower.json, build.config.*, commitlint*, crowdin*, dangerfile*, dlint.json, dprint.json, electron-builder.*, eslint*, firebase.json, grunt*, gulp*, jenkins*, lerna*, lint-staged*, nest-cli.*, netlify*, nodemon*, npm-shrinkwrap.json, nx.*, package-lock.json, package.nls*.json, phpcs.xml, pm2.*, pnpm*, prettier*, pullapprove*, pyrightconfig.json, release-please*.json, release-tasks.sh, release.config.*, renovate*, rollup.config.*, rspack*, simple-git-hooks*, stylelint*, tslint*, tsup.config.*, turbo*, typedoc*, unlighthouse*, vercel*, vetur.config.*, webpack*, workspace.json, xo.config.*, yarn*",
-		"readme*": "authors, backers*, changelog*, citation*, code_of_conduct*, codeowners, contributing*, contributors, copying, credits, governance.md, history.md, license*, maintainers, readme*, security.md, sponsors*"
-	},
-	/* TERMINAL */
-	"terminal.integrated.defaultProfile.windows": "PowerShell",
-	"terminal.integrated.fontFamily": "'FiraCode Nerd Font Mono', 'Cascadia Mono NF'",
-	"terminal.integrated.fontSize": 14,
-	"terminal.integrated.gpuAcceleration": "on",
-	/* TERMINALES INSTALADAS */
-	/* git */
-	"git.autofetch": true,
-	/* LENGUAJES */
-	/* HTML */
-	"editor.linkedEditing": true, //editar ambas etiquetas HTML al editar una
-	"html.autoClosingTags": true, //cerrar etiquetas HTML automáticamente
-	// "emmet.showExpandedAbbreviation": "inMarkupAndStylesheetFilesOnly",
-	"emmet.includeLanguages": {
-		"vue": "html",
-		"javascript": "javascriptreact",
-		"typescript": "typescriptreact"
-	},
-	/* EXTENSIONES */
-	/* NEOVIM */
-	"extensions.experimental.affinity": {
-		"asvetliakov.vscode-neovim": 1
-	},
-	"vscode-neovim.compositeKeys": {
-		"jk": {
-			"command": "vscode-neovim.escape"
-		}
-	},
-	/* Error Lens */
-	"errorLens.excludeBySource": ["cSpell"],
-	/* Code Spell (ortografía) */
-	"cSpell.language": "en,es"
+  /* VS code */
+  "editor.wordWrap": "on",
+  // "editor.wordWrapColumn": 80,
+  // "editor.wrappingIndent": "same",
+  "editor.lineNumbers": "relative",
+  "editor.rulers": [80, 88],
+  "editor.minimap.enabled": false,
+  "editor.stickyScroll.enabled": true,
+  "explorer.confirmDragAndDrop": true,
+  "files.autoSave": "afterDelay",
+  "editor.suggestSelection": "first",
+  "editor.smoothScrolling": true, //efecto suave scroll
+  "editor.guides.bracketPairs": true,
+  "editor.inlineSuggest.enabled": true, // lineas sin scroll horizontal
+  "workbench.tree.indent": 12,
+  "workbench.layoutControl.enabled": false,
+  // "workbench.layoutControl.enabled": true, // configuración para cursor
+  "editor.showFoldingControls": "never",
+  "explorer.compactFolders": false,
+  "files.trimTrailingWhitespace": true, //quitar espacio en blanco al final de lineas al guardar
+  "files.insertFinalNewline": true, //agregar una nueva linea al final al guardar
+
+  ////
+
+  /* Barra de titulo y menu de windows */
+  "workbench.colorCustomizations": {
+    "terminalCursor.foreground": "#ca9ee6",
+    // "sideBar.background": "#292c3c"
+    // "sideBar.background": "#303446",
+    "editorOverviewRuler.background": "#303446"
+  },
+  "editor.overviewRulerBorder": false,
+  // "window.customTitleBarVisibility": "never",
+  "workbench.sideBar.location": "right",
+  // "window.titleBarStyle": "native", //barra de titulo mas pequeña
+  "window.menuBarVisibility": "toggle",
+
+  /* THEME */
+  "symbols.hidesExplorerArrows": false,
+  // "workbench.iconTheme": "material-icon-theme",
+  "workbench.iconTheme": "symbols",
+  "workbench.colorTheme": "Catppuccin Frappé",
+
+  /*  FUENTE */
+  "editor.fontFamily": "'Cascadia Mono NF', 'FiraCode Nerd Font Mono'",
+  "editor.fontLigatures": "'calt', 'ss01'", // cambiar itálica por cursiva en cascadia code
+  "editor.fontSize": 14,
+  "editor.fontWeight": "350", // grosor de fuente
+
+  /* CURSOR Y ESPACIADO */
+  "editor.detectIndentation": true,
+  // "editor.tabSize": 2,
+  "editor.lineHeight": 2,
+  "editor.cursorStyle": "line", //estilo del cursor
+  "editor.cursorBlinking": "expand", // tipo de parpadeo del cursor
+  "editor.cursorSmoothCaretAnimation": "on", //efecto suave cursor
+  "editor.renderWhitespace": "all", //punto en espacio en blanco
+
+  /* BIOME / PRETTIER and ESLINT  */
+  "editor.formatOnSave": true,
+  "eslint.enable": true,
+  "prettier.enable": true,
+  "biome.enabled": false,
+  "[javascript][typescript][javascriptreact][typescriptreact][json][jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    // "editor.defaultFormatter": "biomejs.biome",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit",
+      // "quickfix.biome": "explicit",
+      "source.organizeImports": "explicit"
+    }
+    // "editor.detectIndentation": false,
+    // "editor.insertSpaces": true,
+    // "editor.tabSize": 2,
+  },
+
+  "[css]": {
+    "editor.defaultFormatter": "vscode.css-language-features",
+    "editor.codeActionsOnSave": {
+      // pendiente definir configuración probablemente con stylelint
+    }
+  },
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+  },
+
+  /* anidación en el explorador de archivos */
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.expand": false,
+  "explorer.fileNesting.patterns": {
+    "package.json": ".browserslist*, .circleci*, .commitlint*, .cz-config.js, .czrc, .dlint.json, .dprint.json, .editorconfig, .eslint*, .firebase*, .flowconfig, .github*, .gitlab*, .gitpod*, .huskyrc*, .jslint*, .lintstagedrc*, .markdownlint*, .node-version, .nodemon*, .npm*, .nvmrc, .pm2*, .pnp.*, .pnpm*, .prettier*, .release-please*.json, .releaserc*, .sentry*, .simple-git-hooks*, .stackblitz*, .styleci*, .stylelint*, .tazerc*, .textlint*, .tool-versions, .travis*, .versionrc*, .vscode*, .watchman*, .xo-config*, .yamllint*, .yarnrc*, Procfile, apollo.config.*, appveyor*, azure-pipelines*, bower.json, build.config.*, commitlint*, crowdin*, dangerfile*, dlint.json, dprint.json, electron-builder.*, eslint*, firebase.json, grunt*, gulp*, jenkins*, lerna*, lint-staged*, nest-cli.*, netlify*, nodemon*, npm-shrinkwrap.json, nx.*, package-lock.json, package.nls*.json, phpcs.xml, pm2.*, pnpm*, prettier*, pullapprove*, pyrightconfig.json, release-please*.json, release-tasks.sh, release.config.*, renovate*, rollup.config.*, rspack*, simple-git-hooks*, stylelint*, tslint*, tsup.config.*, turbo*, typedoc*, unlighthouse*, vercel*, vetur.config.*, webpack*, workspace.json, xo.config.*, yarn*",
+    "readme*": "authors, backers*, changelog*, citation*, code_of_conduct*, codeowners, contributing*, contributors, copying, credits, governance.md, history.md, license*, maintainers, readme*, security.md, sponsors*"
+  },
+
+  /* TERMINAL */
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  "terminal.integrated.fontFamily": "'FiraCode Nerd Font Mono', 'Cascadia Mono NF'",
+  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.gpuAcceleration": "on",
+
+  /* TERMINALES INSTALADAS */
+
+  /* git */
+  "git.autofetch": true,
+  "diffEditor.ignoreTrimWhitespace": false,
+
+  /* LENGUAJES */
+  /*   "files.associations": {
+		"*.vue": "vue",
+		"*.js": "javascriptreact",
+		"*.ts": "typescriptreact"
+	}, */
+  /* HTML */
+  "editor.linkedEditing": true, //editar ambas etiquetas HTML al editar una
+  "html.autoClosingTags": true, //cerrar etiquetas HTML automáticamente
+  // "emmet.showExpandedAbbreviation": "inMarkupAndStylesheetFilesOnly",
+  "emmet.includeLanguages": {
+    "vue": "html",
+    "javascript": "javascriptreact",
+    "typescript": "typescriptreact"
+  },
+
+  /* EXTENSIONES */
+
+  /* NEOVIM */
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  },
+
+  "vscode-neovim.compositeKeys": {
+    "jk": {
+      "command": "vscode-neovim.escape"
+    }
+  },
+
+  /* Error Lens */
+  "errorLens.excludeBySource": ["cSpell"],
+
+  /* Code Spell (ortografía) */
+  "cSpell.language": "en,es",
+  "cSpell.userWords": [
+    "enrutador",
+    "galeano",
+    "indentar",
+    "middlewares",
+    "neovim",
+    "NEOVIM",
+    "parseada",
+    "sincrona",
+    "trackear"
+  ],
+
+  /* CONSOLE NINJA */
+  "console-ninja.toolsToEnableSupportAutomaticallyFor": {
+    "live-server-extension": true
+  },
+  "console-ninja.featureSet": "Community",
+
+  /* CODE RUNNER */
+  "code-runner.saveFileBeforeRun": true,
+  "code-runner.runInTerminal": true,
+
+  /* OTROS */
+  // "playwright.reuseBrowser": true
+  "editor.accessibilitySupport": "off",
+  "rapidapi.terminalLink.enabled": false,
+  "gitlens.graph.layout": "editor",
+  "update.mode": "default",
+  "database-client.autoSync": true,
+  "security.workspace.trust.untrustedFiles": "open",
+  "terminal.integrated.defaultProfile.linux": "zsh",
+  "terminal.integrated.env.linux": {}
 }

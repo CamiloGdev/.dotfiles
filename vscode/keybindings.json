@@ -1,101 +1,97 @@
 [
-	// NAVEGACIÓN
-	// next an previous terminal
-	{
-		"key": "shift+a",
-		"command": "workbench.action.terminal.focusNext",
-		"when": "terminalFocus"
-	},
-	{
-		"key": "shift+b",
-		"command": "workbench.action.terminal.focusPrevious",
-		"when": "terminalFocus"
-	},
+  // NAVEGACIÓN
+  // next an previous terminal
+  {
+    "key": "shift+a",
+    "command": "workbench.action.terminal.focusNext",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "shift+b",
+    "command": "workbench.action.terminal.focusPrevious",
+    "when": "terminalFocus"
+  },
 
-	// FILE TREE
-	{
-		"key": "ctrl+n",
-		"command": "explorer.newFile",
-		"when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
-	},
-	{
-		"key": "ctrl+shift+n",
-		"command": "explorer.newFolder",
-		"when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
-	},
-	{
-		"key": "ctrl+b",
-		"command": "workbench.action.toggleSidebarVisibility",
-		"when": "sideBarVisible"
-	},
-	{
-		"key": "ctrl+b",
-		"command": "workbench.view.explorer",
-		"when": "!sideBarVisible"
-	},
-	{
-		"key": "ctrl+shift+b",
-		"command": "workbench.files.action.showActiveFileInExplorer",
-		"when": "!sideBarVisible"
-	},
-	{
-		"key": "l",
-		"command": "extension.multiCommand.execute",
-		"args": {
-			"sequence": ["list.select", "workbench.action.toggleSidebarVisibility"]
-		},
-		"when": "explorerViewletVisible && filesExplorerFocus && !inputFocus && !explorerResourceIsFolder"
-	},
-	{
-		"key": "v",
-		"command": "extension.multiCommand.execute",
-		"args": {
-			"sequence": [
-				"explorer.openToSide",
-				"workbench.action.toggleSidebarVisibility"
-			]
-		},
-		"when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
-	},
-	{
-		"key": "ctrl+q",
-		"command": "-extension.vim_winCtrlQ",
-		"when": "editorTextFocus && vim.active && vim.use<C-q> && !inDebugRepl"
-	},
+  // FILE TREE
+  {
+    "key": "ctrl+n",
+    "command": "explorer.newFile",
+    "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
+  },
+  {
+    "key": "ctrl+shift+n",
+    "command": "explorer.newFolder",
+    "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
+  },
+  {
+    "key": "ctrl+b",
+    "command": "workbench.action.toggleSidebarVisibility"
+  },
+  {
+    "key": "ctrl+b",
+    "command": "workbench.action.focusSideBar",
+    "when": "!sideBarVisible"
+  },
+  {
+    "key": "ctrl+shift+b",
+    "command": "workbench.files.action.showActiveFileInExplorer",
+    "when": "!sideBarVisible"
+  },
+  {
+    "key": "l",
+    "command": "extension.multiCommand.execute",
+    "args": {
+      "sequence": ["list.select", "workbench.action.toggleSidebarVisibility"]
+    },
+    "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus && !explorerResourceIsFolder"
+  },
+  {
+    "key": "v",
+    "command": "extension.multiCommand.execute",
+    "args": {
+      "sequence": [
+        "explorer.openToSide",
+        "workbench.action.toggleSidebarVisibility"
+      ]
+    },
+    "when": "explorerViewletVisible && filesExplorerFocus && !inputFocus"
+  },
+  {
+    "key": "ctrl+q",
+    "command": "-extension.vim_winCtrlQ",
+    "when": "editorTextFocus && vim.active && vim.use<C-q> && !inDebugRepl"
+  },
 
-	// NEOVIM
-	// send multi cursor commands
-	{
-		"args": "<S-q>",
-		"command": "vscode-neovim.send",
-		"key": "shift+q",
-		"when": "editorTextFocus && neovim.mode != insert"
-	},
+  // NEOVIM
+  // send multi cursor commands
+  {
+    "args": "<S-q>",
+    "command": "vscode-neovim.send",
+    "key": "shift+q",
+    "when": "editorTextFocus && neovim.mode != insert"
+  },
 
-	// sent scroll commands
-	{
-		"args": "<C-d>",
-		"command": "vscode-neovim.send",
-		"key": "ctrl+d",
-		"when": "editorTextFocus && neovim.mode != insert"
-	},
-	{
-		"args": "<C-u>",
-		"command": "vscode-neovim.send",
-		"key": "ctrl+u",
-		"when": "editorTextFocus && neovim.mode != insert"
-	},
-	{
-		"args": "<C-m>",
-		"command": "vscode-neovim.send",
-		"key": "ctrl+m",
-		"when": "editorTextFocus && neovim.mode != insert"
-	},
-
-	// CHAT
-	// Open Copilot chat sidebar
-	{
-		"key": "ctrl+shift+c",
-		"command": "workbench.panel.chatSidebar"
-	}
+  // sent scroll commands
+  {
+    "args": "<C-d>",
+    "command": "vscode-neovim.send",
+    "key": "ctrl+d",
+    "when": "editorTextFocus && neovim.mode != insert"
+  },
+  {
+    "args": "<C-u>",
+    "command": "vscode-neovim.send",
+    "key": "ctrl+u",
+    "when": "editorTextFocus && neovim.mode != insert"
+  },
+  {
+    "args": "<C-m>",
+    "command": "vscode-neovim.send",
+    "key": "ctrl+m",
+    "when": "editorTextFocus && neovim.mode != insert"
+  },
+  {
+    "key": "ctrl+shift+c",
+    "command": "workbench.panel.chatSidebar"
+  }
 ]
