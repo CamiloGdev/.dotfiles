@@ -1,1 +1,4 @@
 lazy-lock.json
+
+# Ignore backups folder and its contents
+backups/
