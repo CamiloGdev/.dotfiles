@@ -60,7 +60,7 @@ sudo ln -s /usr/bin/batcat /usr/local/bin/bat
 # clonar el repositorio de fzf en la carpeta .fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ## Ejecutar el script de instalación
-yer | ~/.fzf/install
+yes | ~/.fzf/install
 
 # Oh-my-zsh
 # la instalación establece zsh como shell por defecto
