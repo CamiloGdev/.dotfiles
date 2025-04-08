@@ -1,3 +1,8 @@
+# Configure Homebrew PATH only on macOS
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    export PATH="/opt/homebrew/bin:$PATH"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
@@ -141,7 +146,7 @@ eval "$(zoxide init zsh)"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # fnm
-FNM_PATH="/home/camilodev/.local/share/fnm"
+FNM_PATH="$HOME/.local/share/fnm"
 if [ -d "$FNM_PATH" ]; then
   export PATH="$FNM_PATH:$PATH"
   eval "`fnm env`"
@@ -149,11 +154,11 @@ fi
 
 # GitHub Copilot Cli aliases
 # Después de instalar GitHub Copilot CLI, se pueden usar los alias ejecutando el siguiente comando
-eval "$(gh copilot alias -- zsh)"
+# eval "$(gh copilot alias -- zsh)"
 
-PATH=~/.console-ninja/.bin:$PATH
+
 # pnpm
-export PNPM_HOME="/home/camilodev/.local/share/pnpm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;

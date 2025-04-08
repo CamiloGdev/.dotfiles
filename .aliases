@@ -3,12 +3,12 @@
 # dir
 alias ..="cd .."
 alias ...="cd ../.."
-alias ls="exa --icons"
-alias dir="exa --icons -lh"
-alias ll="exa -l --icons"
-alias la="exa -la --icons"
-alias tree="exa --icons --tree -L 1 -I node_modules"
-alias tt="exa --icons --tree --level=2 --long "
+alias ls="eza --icons"
+alias dir="eza --icons -lh"
+alias ll="eza -l --icons"
+alias la="eza -la --icons"
+alias tree="eza --icons --tree -L 1 -I node_modules"
+alias tt="eza --icons --tree --level=2 --long "
 
 # Jumps
 alias ~="cd ~"
