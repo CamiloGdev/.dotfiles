@@ -3,6 +3,9 @@ if not vim then
   vim = require('vim')
 end
 
+-- Configure and bootstrap lazy.nvim plugin manager
+-- Checks if lazy.nvim is installed, if not clones it from GitHub
+-- Adds lazy.nvim to runtime path for Neovim to load it
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -43,7 +46,7 @@ require("lazy").setup({
         "gzip",
         "matchit",
         "matchparen",
-        -- "netrwPlugin",
+        "netrwPlugin",
         "tarPlugin",
         "tohtml",
         "tutor",

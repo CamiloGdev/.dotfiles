@@ -1,11 +1,4 @@
--- copilot CLI en la terminal
--- manejo de la terminal,  cerrar, moverse entre ellas, volver al codigo.sin cerrar  o minimizar
--- apertura de la busqueda
--- por alguna razon no me formatea los lua en pc del trabajo, en la casa si lo hace
--- poder usar nvim en los imputs de vscode, como el editor de symbol o el de commit message, etc...
--- por alguna razon el centrado con zz despues de <C-d> y <C-u> no funciona en vscode
 -- el scroll por lineas en vscode no desplaza el cursor, lo deja en el mismo lugar y solo mueve la pantalla
--- optimización de windows
 -----------------------------
 -- For executing commands, try to use in this order of priority: <Cmd>, :, vim.cmd; in terms of performance
 -- Check to determine if we are in VSCode
@@ -24,7 +17,14 @@ local function create_action(vscode_action, nvim_action)
 end
 
 -- Set space as the leader key
-vim.g.mapleader = " "
+if in_vscode then
+    -- Configuraciones específicas para VSCode
+    vim.keymap.set("", "<Space>", "<Nop>")
+    vim.g.mapleader = " "
+else
+    -- Configuraciones para Neovim en terminal
+    vim.g.mapleader = " "
+end
 
 -----------------------------
 -- Open Netrw directory listing
@@ -54,12 +54,12 @@ vim.keymap.set('n', 'U', '<C-r>', {
 --- Navigation enhancements
 
 -- End of line movements
-vim.keymap.set({'n', 'v', 'o'}, '<leader>l', '$', {
+vim.keymap.set({ 'n', 'v', 'o' }, '<leader>l', '$', {
     desc = 'Move to end of line'
 })
 
 -- Beginning of line movements
-vim.keymap.set({'n', 'v', 'o'}, '<leader>h', '^', {
+vim.keymap.set({ 'n', 'v', 'o' }, '<leader>h', '^', {
     desc = 'Move to first non-blank character of line'
 })
 
@@ -75,26 +75,26 @@ vim.keymap.set('n', 'N', 'Nzzzv', {
 vim.keymap.set("n", "J", "mzJ`z", {
     desc = "Join lines and maintain cursor position"
 })
-vim.keymap.set({"n", "x"}, "<C-d>", "<C-d>zz", {
+vim.keymap.set({ "n", "x" }, "<C-d>", "<C-d>zz", {
     desc = "Scroll down and keep cursor centered"
 })
-vim.keymap.set({"n", "x"}, "<C-u>", "<C-u>zz", {
+vim.keymap.set({ "n", "x" }, "<C-u>", "<C-u>zz", {
     desc = "Scroll up and keep cursor centered"
 })
 
 ---------------------------------
 --- Fold and unfold
 if in_vscode then
-    vim.keymap.set({'n', 'x'}, 'zc', '<Cmd>lua require("vscode").call("editor.toggleFold")<CR>', {
+    vim.keymap.set({ 'n', 'x' }, 'zc', '<Cmd>lua require("vscode").call("editor.toggleFold")<CR>', {
         desc = 'Toggle fold current block'
     })
-    vim.keymap.set({'n', 'x'}, 'zC', '<Cmd>lua require("vscode").call("editor.foldAll")<CR>', {
+    vim.keymap.set({ 'n', 'x' }, 'zC', '<Cmd>lua require("vscode").call("editor.foldAll")<CR>', {
         desc = 'Fold all blocks'
     })
-    vim.keymap.set({'n', 'x'}, 'zo', '<Cmd>lua require("vscode").call("editor.unfold")<CR>', {
+    vim.keymap.set({ 'n', 'x' }, 'zo', '<Cmd>lua require("vscode").call("editor.unfold")<CR>', {
         desc = 'Unfold current block'
     })
-    vim.keymap.set({'n', 'x'}, 'zO', '<Cmd>lua require("vscode").call("editor.unfoldAll")<CR>', {
+    vim.keymap.set({ 'n', 'x' }, 'zO', '<Cmd>lua require("vscode").call("editor.unfoldAll")<CR>', {
         desc = 'Unfold all blocks'
     })
 end
@@ -133,55 +133,45 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", {
 --- File operations
 
 --- Save file
-vim.keymap.set({'n', 'x'}, '<leader>w', '<Cmd>w<CR>', {
+vim.keymap.set({ 'n', 'x' }, '<leader>w', '<Cmd>w<CR>', {
     desc = 'Save current file'
 })
 
 -- Clouse current file
-vim.keymap.set({'n', 'x'}, '<leader><leader>q', create_action('<Cmd>Quit<CR>', '<Cmd>q<CR>'), {
+vim.keymap.set({ 'n', 'x' }, '<leader><leader>q', create_action('<Cmd>Quit<CR>', '<Cmd>q<CR>'), {
     desc = 'Close current file'
 })
 
 -- Close all files
-vim.keymap.set({'n', 'x'}, '<leader><leader>Q', create_action('<Cmd>Qall<CR>', '<Cmd>qa<CR>'), {
+vim.keymap.set({ 'n', 'x' }, '<leader><leader>Q', create_action('<Cmd>Qall<CR>', '<Cmd>qa<CR>'), {
     desc = 'Close all files'
 })
 
-------------------------------
---- Tab navigation
-if in_vscode then
-    vim.keymap.set({'n', 'x'}, '<Tab>', '<Cmd>Tabnext<CR>', {
-        desc = 'Next tab'
-    })
-    vim.keymap.set({'n', 'x'}, '<S-Tab>', '<Cmd>Tabprevious<CR>', {
-        desc = 'Previous tab'
-    })
-end
 
 ------------------------------
 --- Splits
 -- Create splits
 if in_vscode then
-    vim.keymap.set({'n', 'x'}, '<leader>v', '<Cmd>Vsplit<CR>', {
+    vim.keymap.set({ 'n', 'x' }, '<leader>v', '<Cmd>Vsplit<CR>', {
         desc = 'Vertical split'
     })
-    vim.keymap.set({'n', 'x'}, '<leader>s', '<Cmd>Split<CR>', {
+    vim.keymap.set({ 'n', 'x' }, '<leader>s', '<Cmd>Split<CR>', {
         desc = 'Horizontal split'
     })
 end
 
 -- Move between splits
 if in_vscode then
-    vim.keymap.set({'n', 'x'}, '<C-h>', '<Cmd>call VSCodeNotify("workbench.action.focusLeftGroup")<CR>', {
+    vim.keymap.set({ 'n', 'x' }, '<leader><leader>h', '<Cmd>call VSCodeNotify("workbench.action.focusLeftGroup")<CR>', {
         desc = 'Move to the left split'
     })
-    vim.keymap.set({'n', 'x'}, '<C-l>', '<Cmd>call VSCodeNotify("workbench.action.focusRightGroup")<CR>', {
+    vim.keymap.set({ 'n', 'x' }, '<leader><leader>l', '<Cmd>call VSCodeNotify("workbench.action.focusRightGroup")<CR>', {
         desc = 'Move to the right split'
     })
-    vim.keymap.set({'n', 'x'}, '<C-j>', '<Cmd>call VSCodeNotify("workbench.action.focusBelowGroup")<CR>', {
+    vim.keymap.set({ 'n', 'x' }, '<leader><leader>j', '<Cmd>call VSCodeNotify("workbench.action.focusBelowGroup")<CR>', {
         desc = 'Move to the down split'
     })
-    vim.keymap.set({'n', 'x'}, '<C-k>', '<Cmd>call VSCodeNotify("workbench.action.focusAboveGroup")<CR>', {
+    vim.keymap.set({ 'n', 'x' }, '<leader><leader>k', '<Cmd>call VSCodeNotify("workbench.action.focusAboveGroup")<CR>', {
         desc = 'Move to the up split'
     })
 end
@@ -190,7 +180,7 @@ end
 -- vscode copilot keymaps
 --
 if in_vscode then
-    vim.keymap.set({'n', 'x'}, '<leader><C-i>', '<Cmd>call VSCodeNotify("inlineChat.start")<CR>', {
+    vim.keymap.set({ 'n', 'x' }, '<leader><C-i>', '<Cmd>call VSCodeNotify("inlineChat.start")<CR>', {
         desc = 'Move to the left split'
     })
 end
@@ -212,13 +202,13 @@ vim.opt.smartcase = true
 -------------------------------------
 --- vim-spider keymaps, lua implementation of CamelCaseMotion
 
-vim.keymap.set({"n", "o", "x"}, "w", "<cmd>lua require('spider').motion('w')<CR>", {
+vim.keymap.set({ "n", "o", "x" }, "w", "<cmd>lua require('spider').motion('w')<CR>", {
     desc = "Spider-w, move to the next word start"
 })
-vim.keymap.set({"n", "o", "x"}, "e", "<cmd>lua require('spider').motion('e')<CR>", {
+vim.keymap.set({ "n", "o", "x" }, "e", "<cmd>lua require('spider').motion('e')<CR>", {
     desc = "Spider-e, move to the end of the word"
 })
-vim.keymap.set({"n", "o", "x"}, "b", "<cmd>lua require('spider').motion('b')<CR>", {
+vim.keymap.set({ "n", "o", "x" }, "b", "<cmd>lua require('spider').motion('b')<CR>", {
     desc = "Spider-b, move to the previous word start"
 })
 
