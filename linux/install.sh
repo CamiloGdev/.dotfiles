@@ -87,6 +87,8 @@ mkdir -p ~/.dotfiles/backups
 # crear directorio de configuración de nvim en caso de que no exista y linkear archivos de configuración
 mkdir -p ~/.config
 stow -R nvim -t ~
+stow -R kitty -t ~
+stow -R tmux -t ~
 
 # hacer backup de .zshrc y linkear el archivo de configuración desde dotfiles
 mv ~/.zshrc ~/.dotfiles/backups/
