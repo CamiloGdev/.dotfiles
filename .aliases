@@ -1,5 +1,8 @@
 # se agrega dot al inicio del comando para que no tenga efecto, es decir que es un alias que NO se desea usar
 
+# Kitten icat, solo para la terminal kitty
+alias  icat='kitten icat'
+
 # dir
 alias ..="cd .."
 alias ...="cd ../.."
