@@ -152,6 +152,11 @@ if [ -d "$FNM_PATH" ]; then
   eval "$(fnm env --use-on-cd)"
 fi
 
+# Configuración básica de Go
+export PATH=$PATH:/usr/local/go/bin
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+
 # GitHub Copilot Cli aliases
 # Después de instalar GitHub Copilot CLI, se pueden usar los alias ejecutando el siguiente comando
 # eval "$(gh copilot alias -- zsh)"
