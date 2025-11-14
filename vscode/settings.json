@@ -60,16 +60,22 @@
 
   /* BIOME / PRETTIER and ESLINT  */
   "editor.formatOnSave": true,
-  "eslint.enable": true,
-  "prettier.enable": true,
-  "biome.enabled": false,
+  "biome.enabled": true,
+  "eslint.enable": false,
+  "prettier.enable": false,
+  "oxc.enable": false,
+  // "oxc.lint.run": "onSave",
   "[javascript][typescript][javascriptreact][typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    // "editor.defaultFormatter": "biomejs.biome",
+    // "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.defaultFormatter": "biomejs.biome",
+    // "editor.defaultFormatter": null,
     "editor.codeActionsOnSave": {
-      "source.organizeImports": "explicit",
-      "source.fixAll.eslint": "explicit"
+      // "source.organizeImports": "explicit",
+      // "source.fixAll.eslint": "explicit"
       // "quickfix.biome": "explicit",
+      "source.fixAll.biome": "explicit",
+      "source.organizeImports.biome": "explicit"
+      // "oxc.lint.run": "explicit",
     }
     // "editor.detectIndentation": false,
     // "editor.insertSpaces": true,
@@ -77,13 +83,22 @@
   },
 
   "[json][jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    // "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "biomejs.biome",
+    // "editor.defaultFormatter": null,
+    "editor.codeActionsOnSave": {
+      // "quickfix.biome": "explicit",
+      "source.fixAll.biome": "explicit"
+    }
   },
 
   "[css]": {
-    "editor.defaultFormatter": "vscode.css-language-features",
+    // "editor.defaultFormatter": "vscode.css-language-features",
+    "editor.defaultFormatter": "biomejs.biome",
+    // "editor.defaultFormatter": null,
     "editor.codeActionsOnSave": {
       // pendiente definir configuración probablemente con stylelint
+      "source.fixAll.biome": "explicit"
     }
   },
   "[html]": {
@@ -91,6 +106,10 @@
   },
   "[markdown]": {
     "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+  },
+
+  "[go]": {
+    "editor.tabSize": 4
   },
 
   /* anidación en el explorador de archivos */
@@ -106,6 +125,34 @@
   "terminal.integrated.fontFamily": "'FiraCode Nerd Font Mono', 'Cascadia Mono NF'",
   "terminal.integrated.fontSize": 14,
   "terminal.integrated.gpuAcceleration": "on",
+  // -----
+
+  "terminal.integrated.profiles.linux": {
+    "bash": {
+      "path": "bash",
+      "icon": "terminal-bash"
+    },
+    "zsh": {
+      "path": "zsh"
+    },
+    "kitty": {
+      "path": "/usr/bin/kitty"
+    }
+  },
+  "terminal.integrated.profiles.osx": {
+    "bash": {
+      "path": "bash",
+      "icon": "terminal-bash"
+    },
+    "zsh": {
+      "path": "zsh"
+    },
+    "kitty": {
+      "path": "/usr/bin/kitty"
+    }
+  },
+  "terminal.integrated.defaultProfile.linux": "zsh",
+  "terminal.integrated.defaultProfile.osx": "zsh",
 
   /* TERMINALES INSTALADAS */
 
@@ -177,7 +224,22 @@
   "update.mode": "default",
   "database-client.autoSync": true,
   "security.workspace.trust.untrustedFiles": "open",
-  "terminal.integrated.defaultProfile.linux": "zsh",
-  "terminal.integrated.env.linux": {},
-  "terminal.integrated.env.osx": {}
+
+  /* WINDSURF */
+  "windsurf.marketplaceExtensionGalleryServiceURL": "https://marketplace.visualstudio.com/_apis/public/gallery",
+  "windsurf.marketplaceGalleryItemURL": "https://marketplace.visualstudio.com/item",
+  "debug.javascript.autoAttachFilter": "disabled",
+  "gitlens.views.scm.grouped.views": {
+    "commits": true,
+    "branches": true,
+    "remotes": true,
+    "stashes": true,
+    "tags": true,
+    "worktrees": true,
+    "contributors": true,
+    "fileHistory": false,
+    "repositories": true,
+    "searchAndCompare": false,
+    "launchpad": false
+  }
 }
