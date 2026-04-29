@@ -93,5 +93,21 @@
   {
     "key": "ctrl+shift+c",
     "command": "workbench.panel.chatSidebar"
+  },
+  // SOLUCIÓN CONFLICTO TECLA Z
+  // Desactivar acordes de lista que interfieren con la escritura de 'z'
+  { "key": "z c", "command": "-list.collapse" },
+  { "key": "z o", "command": "-list.expand" },
+  { "key": "z m", "command": "-list.collapseAll" },
+  { "key": "z a", "command": "-list.toggleExpand" },
+  { "key": "z shift+c", "command": "-list.collapseAllToFocus" },
+  { "key": "z shift+o", "command": "-list.expand" },
+  { "key": "z shift+m", "command": "-list.collapseAll" },
+  { "key": "z shift+a", "command": "-list.toggleExpand" },
+  {
+    "key": "z",
+    "command": "type",
+    "args": { "text": "z" },
+    "when": "inputFocus"
   }
 ]
