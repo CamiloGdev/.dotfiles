@@ -25,6 +25,8 @@
   * la forma de **actualizarlo** es entrando a la carpeta de ~/.fzf, haciendo git pull y ejecutando el script de instalación de nuevo ~/.fzf/install
 * instala Oh-my-zsh
 * instala plugins de zsh
+* instala Tmux y el gestor de plugins TPM
+  * **IMPORTANTE**: Para finalizar la instalación de plugins de tmux, debes abrir tmux y presionar `prefix + I` (Shift + i).
 * ejecuta stow para linkear los dotfiles
   * linkea .zshrc que contiene el tema, los plugins, etc...
   * linkea .config/nvim que contiene la configuración de neovim

@@ -8,7 +8,7 @@ sudo apt-get upgrade -y
 #INSTALACION DE PAQUETES ESENCIALES
 sudo apt-get install -y \
     bash zsh zgen sudo wget g++ make gnupg gnupg2 ca-certificates lsb-release \
-    vim neovim nano libbrotli-dev cmake \
+    tmux vim neovim nano libbrotli-dev cmake \
     ccze jq jc less catimg nnn ranger zoxide \
     tldr httpie man googler ddgr neofetch screenfetch \
     htop ncdu icdiff \
@@ -25,6 +25,7 @@ sudo apt-get install -y \
     # wget (descarga con links)
     # g++ make gnupg gnupg2 ca-certificates (Herramientas de complación)
     # lsb-release (version de LINUX)
+    # tmux (multiplexor de terminal)
     # vim nano (editores)
     # libbrotli-dev cmake (compresores)
     # ccze (colorea la salida de texto)
@@ -73,6 +74,10 @@ git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-m
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 # (zsh-completions): Auto completado mejorado para comandos, agrega auto completado adicional que no esta incluido en el auto completado de comandos que trae zsh
 git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions
+
+# instalar tmux plugin manager (TPM)
+# Para instalar los plugins: entrar a tmux y presionar prefix + I (Mayuscula)
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # instalar y establecer el THEME deseado
 # ...

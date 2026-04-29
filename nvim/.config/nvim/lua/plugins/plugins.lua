@@ -27,7 +27,7 @@ return {{
         end
     },
     -- install easymotion
-    {"easymotion/vim-easymotion"},
+    -- {"easymotion/vim-easymotion"},
     -- install nvim-spider
     {
         "chrisgrieser/nvim-spider",
