@@ -133,7 +133,7 @@ autoload -U compinit && compinit
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=8"
 
 # Atajo de teclado para aceptar la sugerencia sin ejecutar el comando
-bindkey '^ ' autosuggest-accept
+bindkey '^@' autosuggest-accept
 
 # zoxide
 # iniciar zoxide, complemento para moverse por rutas segun historial
@@ -163,9 +163,11 @@ export PATH=$PATH:$GOPATH/bin
 
 
 # pnpm
-export PNPM_HOME="$HOME/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
 # pnpm end
+
+# npm
+# npm end
+
+# asdf configuration
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
+

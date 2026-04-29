@@ -111,7 +111,25 @@
   "[go]": {
     "editor.tabSize": 4
   },
-
+  //---------------------------------------------------------//
+  /* Elixir */
+  "elixirLS.suggestSpecs": false,
+  "elixirLS.dialyzerEnabled": true,
+  "elixirLS.signatureAfterComplete": false,
+  "elixirLS.fetchDeps": false,
+  "files.associations": {
+    "*.heex": "phoenix-heex"
+  },
+  "[elixir]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "JakeBecker.elixir-ls"
+  },
+  "[phoenix-heex]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "JakeBecker.elixir-ls"
+  },
+  "emmet.triggerExpansionOnTab": true,
+  //---------------------------------------------------------//
   /* anidación en el explorador de archivos */
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.expand": false,
@@ -171,9 +189,14 @@
   "html.autoClosingTags": true, //cerrar etiquetas HTML automáticamente
   // "emmet.showExpandedAbbreviation": "inMarkupAndStylesheetFilesOnly",
   "emmet.includeLanguages": {
+    /* JavaScript */
     "vue": "html",
     "javascript": "javascriptreact",
-    "typescript": "typescriptreact"
+    "typescript": "typescriptreact",
+    /* Elixir */
+    "elixir": "html",
+    "phoenix-heex": "html",
+    "html-eex": "html"
   },
 
   /* EXTENSIONES */
