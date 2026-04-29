@@ -143,7 +143,9 @@ eval "$(zoxide init zsh)"
 
 # fzf
 # verificar si fzf esta instalado y cargarlo
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if command -v fzf &> /dev/null; then
+  source <(fzf --zsh)
+fi
 
 # fnm
 FNM_PATH="$HOME/.local/share/fnm"
