@@ -111,16 +111,29 @@
   "elixirLS.dialyzerEnabled": true,
   "elixirLS.signatureAfterComplete": false,
   "elixirLS.fetchDeps": false,
+  "elixirLS.mixEnv": "test",
+  "elixirLS.mixTarget": "host",
   "files.associations": {
     "*.heex": "phoenix-heex"
   },
   "[elixir]": {
+    "files.trimFinalNewlines": true, //quitar linea en blanco al final al guardar
     "editor.formatOnSave": true,
-    "editor.defaultFormatter": "JakeBecker.elixir-ls"
+    "editor.formatOnType": true,
+    "editor.insertSpaces": true,
+    "editor.wordBasedSuggestions": "off",
+    "editor.trimAutoWhitespace": false
+    // "editor.defaultFormatter": "elixir-lsp.elixir-ls",
+    // "editor.defaultFormatter": "JakeBecker.elixir-ls"
   },
   "[phoenix-heex]": {
+    "files.trimFinalNewlines": true, //quitar linea en blanco al final al guardar
     "editor.formatOnSave": true,
-    "editor.defaultFormatter": "JakeBecker.elixir-ls"
+    "editor.formatOnType": true,
+    "editor.insertSpaces": true,
+    "editor.trimAutoWhitespace": false
+    // "editor.defaultFormatter": "elixir-lsp.elixir-ls"
+    // "editor.defaultFormatter": "JakeBecker.elixir-ls"
   },
   "emmet.triggerExpansionOnTab": true,
   //---------------------------------------------------------//
