@@ -170,5 +170,5 @@ export PATH=$PATH:$GOPATH/bin
 # npm
 # npm end
 
-# asdf configuration (Go version)
-export PATH="$HOME/.asdf/shims:$PATH"
+# asdf configuration (Go version) - Universal
+export PATH="$HOME/.asdf/shims:$HOME/.asdf/bin:$PATH"
