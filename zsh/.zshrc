@@ -172,3 +172,4 @@ export PATH=$PATH:$GOPATH/bin
 
 # asdf configuration (Go version) - Universal
 export PATH="$HOME/.asdf/shims:$HOME/.asdf/bin:$PATH"
+export KERL_BUILD_DOCS=yes
