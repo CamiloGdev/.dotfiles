@@ -243,21 +243,5 @@
   "update.mode": "default",
   "database-client.autoSync": true,
   "security.workspace.trust.untrustedFiles": "open",
-  /* WINDSURF */
-  "windsurf.marketplaceExtensionGalleryServiceURL": "https://marketplace.visualstudio.com/_apis/public/gallery",
-  "windsurf.marketplaceGalleryItemURL": "https://marketplace.visualstudio.com/item",
   "debug.javascript.autoAttachFilter": "disabled",
-  "gitlens.views.scm.grouped.views": {
-    "commits": true,
-    "branches": true,
-    "remotes": true,
-    "stashes": true,
-    "tags": true,
-    "worktrees": true,
-    "contributors": true,
-    "fileHistory": false,
-    "repositories": true,
-    "searchAndCompare": false,
-    "launchpad": false
-  }
 }
