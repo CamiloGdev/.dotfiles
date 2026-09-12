@@ -1,3 +1,7 @@
+
+# Kiro CLI modifies shell process state; keep it out of Herdr-managed panes.
+[[ "${HERDR_ENV:-}" != "1" && -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh"
+
 # Configure Homebrew PATH only on macOS
 if [[ "$OSTYPE" == "darwin"* ]]; then
     export PATH="/opt/homebrew/bin:$PATH"
@@ -173,3 +177,10 @@ export PATH=$PATH:$GOPATH/bin
 # asdf configuration (Go version) - Universal
 export PATH="$HOME/.asdf/shims:$HOME/.asdf/bin:$PATH"
 export KERL_BUILD_DOCS=yes
+
+# Added by Kiro
+[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"
+
+
+# Kiro CLI modifies shell process state; keep it out of Herdr-managed panes.
+[[ "${HERDR_ENV:-}" != "1" && -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh"
