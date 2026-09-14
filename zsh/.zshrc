@@ -2,6 +2,12 @@
 # Kiro CLI modifies shell process state; keep it out of Herdr-managed panes.
 [[ "${HERDR_ENV:-}" != "1" && -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.pre.zsh"
 
+# Keep user-local binaries (kiro-cli, kiro-cli-chat, ...) on PATH in every shell,
+# including Herdr-managed panes. This only extends PATH; it does NOT load any
+# Kiro shell integration (no figterm, no Q_TERM, no prompt hooks), so Herdr's
+# agent detection (opencode, codex, ...) is unaffected.
+[[ ":$PATH:" != *":${HOME}/.local/bin:"* ]] && export PATH="${HOME}/.local/bin:$PATH"
+
 # Configure Homebrew PATH only on macOS
 if [[ "$OSTYPE" == "darwin"* ]]; then
     export PATH="/opt/homebrew/bin:$PATH"
