@@ -8,17 +8,17 @@
 # │                                   FONT                                       │
 # └──────────────────────────────────────────────────────────────────────────────┘
 
-# font-family = IosevkaTerm NF
-font-family = Cascadia Mono NF
-font-size = 13
+font-family = IosevkaTerm NF
+# font-family = Cascadia Mono NF
+font-size = 14
 
 
 # ┌──────────────────────────────────────────────────────────────────────────────┐
 # │                                  WINDOW                                      │
 # └──────────────────────────────────────────────────────────────────────────────┘
 
-background-opacity = 0.95
-background-blur-radius = 20
+background-opacity = 0.85
+background-blur-radius = 40
 
 window-decoration = true
 window-padding-color = extend

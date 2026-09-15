@@ -9,7 +9,9 @@ onboarding = false
 name = "one-dark"
 
 [theme.custom]
-panel_bg = "#06080f"
+# "reset" uses the terminal background so Ghostty's translucency shows through.
+panel_bg = "reset"
+# panel_bg = "#06080f"
 # Match the Gentleman theme, with a muted cyan for Herdr chrome.
 accent = "#6FA0AF"
 green = "#B7CC85"
