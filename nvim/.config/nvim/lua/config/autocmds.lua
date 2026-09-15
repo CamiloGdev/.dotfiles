@@ -1,0 +1,2 @@
+-- LazyVim loads this file on its VeryLazy event.
+-- Add automatic editor behavior here as it is approved.

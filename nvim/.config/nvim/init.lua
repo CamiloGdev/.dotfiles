@@ -1,5 +1,1 @@
---- Load config folder
-require("config")
-
---- Load camilodev configs
-require("camilodev")
+require("config.lazy")
