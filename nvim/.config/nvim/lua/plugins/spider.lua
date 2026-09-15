@@ -1,0 +1,37 @@
+-- nvim-spider: reserved for future use (vanilla w/e/b kept, as in Gentleman).
+-- Uncomment to enable. Variants documented from research:
+--
+-- A. FULL REPLACE (recommended if enabled): w/e/b/ge -> spider in n/o/x,
+--    lazy-loaded on keystroke (zero startup cost), plus cw->ce fix so
+--    "change to end" keeps its familiar feel on segments.
+--    return {
+--      "chrisgrieser/nvim-spider",
+--      keys = {
+--        { "w", "<cmd>lua require('spider').motion('w')<CR>", mode = { "n", "o", "x" } },
+--        { "e", "<cmd>lua require('spider').motion('e')<CR>", mode = { "n", "o", "x" } },
+--        { "b", "<cmd>lua require('spider').motion('b')<CR>", mode = { "n", "o", "x" } },
+--        { "ge", "<cmd>lua require('spider').motion('ge')<CR>", mode = { "n", "o", "x" } },
+--      },
+--    }
+--    -- plus in keymaps.lua: vim.keymap.set("n", "cw", "ce", { remap = true })
+--
+-- B. OLD CONFIG STYLE: same as A but without "ge" and without the cw fix
+--    (leaves vanilla ge and an unpatched cw).
+--
+-- C. NAVIGATION ONLY (n/x): move by segments, keep operators vanilla
+--    (daw/ciw act on whole words). Drop "o" from mode lists above.
+--
+-- D. SIDE KEYS (coexistence): spider on gw/gb/ge, vanilla untouched.
+--    Costs: gw loses the format operator (gq remains), ge loses vanilla
+--    backward-end, gb is free.
+--    { "gw", "<cmd>lua require('spider').motion('w')<CR>", mode = { "n", "o", "x" } },
+--    { "gb", "<cmd>lua require('spider').motion('b')<CR>", mode = { "n", "o", "x" } },
+--    { "ge", "<cmd>lua require('spider').motion('ge')<CR>", mode = { "n", "o", "x" } },
+--
+-- E. SUBWORD TEXT OBJECT: spider provides a segment-wise "iw" object
+--    (e.g. diw deletes only the camelCase segment under the cursor).
+--
+-- F. INSERT-MODE MOTIONS (discarded): <C-f>/<C-b> spider motions clash
+--    with <C-b> delete-to-end-of-word (Gentleman style), so not used.
+--    vim.keymap.set("i", "<C-f>", "<Esc>l<cmd>lua require('spider').motion('w')<CR>i")
+return {}

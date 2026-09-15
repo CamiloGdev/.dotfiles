@@ -210,6 +210,9 @@
       "command": "vscode-neovim.escape"
     }
   },
+  /* Pass C-b to Neovim in insert mode (delete to end of word, as in terminal).
+     Without "b" here, VSCode eats it and toggles the sidebar instead. */
+  "vscode-neovim.ctrlKeysForInsertMode": ["a", "c", "d", "h", "j", "m", "o", "r", "t", "u", "w", "b"],
   /* Error Lens */
   "errorLens.excludeBySource": [
     "cSpell"
