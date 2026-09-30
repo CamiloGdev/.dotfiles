@@ -28,6 +28,14 @@ status_indicators = "symbols"
 # Caps Lock is mapped to Hyper via Karabiner: ctrl+alt+cmd+shift.
 prefix = "ctrl+alt+cmd+shift+a"
 
+# Vim-style splits: prefix+s horizontal (like C-w s), prefix+v vertical.
+# Default settings action moved to prefix+shift+s to free prefix+s.
+split_horizontal = "prefix+s"
+settings = "prefix+shift+s"
+
+# Tab navigation stays on default prefix+p/n: only one binding per
+# action is supported (verified live: lists break p/n).
+
 # Move between agents in the sidebar.
 # Avoid Herdr's built-in prefix+shift+j/k pane-swap bindings.
 previous_agent = "prefix+alt+k"

@@ -1,7 +1,9 @@
 return {
   "obsidian-nvim/obsidian.nvim",
   version = "*",
-  lazy = false,
+  -- On-demand: loads on markdown files or :Obsidian (startup stays light).
+  ft = "markdown",
+  cmd = "Obsidian",
   enabled = function()
     return not vim.g.disable_obsidian
   end,
