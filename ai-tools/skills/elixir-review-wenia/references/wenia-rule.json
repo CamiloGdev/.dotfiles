@@ -1,0 +1,74 @@
+{
+  "rules": [
+    {
+      "path": "**/domain/error/*.ex",
+      "rule": "Wenia domain-errors convention: errors are centralized as macros in DomainErrors (defmacro <name>, do: :atom). Flag inline error atoms or ad-hoc tuples that belong in DomainErrors. Apply with judgment — Wenia reviewer preference distilled from 306 PR comments (3 reviewers, non-unanimous): skip when context justifies it; report convention findings as medium/low, never high/critical (reserved for bugs, security, data-loss).",
+      "merge_system_rule": true
+    },
+    {
+      "path": "**/error_mapper.ex",
+      "rule": "Wenia ErrorMapper convention: map errors through error_info clauses with B00-*/T00-* codes (B prefix = business/client 4xx, T prefix = technical/server 5xx) plus a catch-all fallback to T00-000/500; prefer a service_error_code/2 helper over repeated literals; preserve 4xx/5xx semantics (never 500 for client errors). Apply with judgment — Wenia reviewer preference distilled from 306 PR comments (3 reviewers, non-unanimous): skip when context justifies it; report convention findings as medium/low, never high/critical (reserved for bugs, security, data-loss).",
+      "merge_system_rule": true
+    },
+    {
+      "path": "**/domain/ports/*.ex",
+      "rule": "Wenia port contracts: integration boundaries are declared as @callback specs returning {:ok, _} | {:error, atom()}, implemented by adapters with @behaviour and @impl true. Apply with judgment — Wenia reviewer preference distilled from 306 PR comments (3 reviewers, non-unanimous): skip when context justifies it; report convention findings as medium/low, never high/critical (reserved for bugs, security, data-loss).",
+      "merge_system_rule": true
+    },
+    {
+      "path": "**/domain/use_cases/*.ex",
+      "rule": "Wenia use-case layer: orchestrate business logic only, resolving dependencies via ModuleInyector adapter_for with explicit [mode: ..., ports: [...]] syntax from the shared Wenia.Commons macro — never a service-local injector copy, never mixed injectors in one module, no ExAws/Ecto/Finch/Req calls inline. Control flow: case for single branching decisions, with only for chains of 2+ success-dependent matches (plus else when error shape matters); never nest with inside else — extract a private helper using case; inline single-use expressions in with; no try/rescue/catch for normal domain outcomes. Apply with judgment — Wenia reviewer preference distilled from 306 PR comments (3 reviewers, non-unanimous): skip when context justifies it; report convention findings as medium/low, never high/critical (reserved for bugs, security, data-loss).",
+      "merge_system_rule": true
+    },
+    {
+      "path": "**/domain/models/*.ex",
+      "rule": "Wenia model boundary: validate with MapValidator/JsonMapper @field_specs inside new/1 returning {:ok, _} | {:error, _}; public structs carry @enforce_keys and @type t; dot access for required fields, bracket access for optional ones. Apply with judgment — Wenia reviewer preference distilled from 306 PR comments (3 reviewers, non-unanimous): skip when context justifies it; report convention findings as medium/low, never high/critical (reserved for bugs, security, data-loss).",
+      "merge_system_rule": true
+    },
+    {
+      "path": "**/entry_point/http/*.ex",
+      "rule": "Wenia HTTP boundary: canonical Plug pipeline order (plug :match, Plug.Parsers with json/Jason, plug :dispatch); routers stay declarative and delegate to use cases; errors flow through the centralized ErrorMapper; render API decimals with Decimal.to_string(:normal). Apply with judgment — Wenia reviewer preference distilled from 306 PR comments (3 reviewers, non-unanimous): skip when context justifies it; report convention findings as medium/low, never high/critical (reserved for bugs, security, data-loss).",
+      "merge_system_rule": true
+    },
+    {
+      "path": "**/entry_point/amqp/**/*.ex",
+      "rule": "Wenia AMQP entry points carry transport concerns only; publishing/integration logic lives in adapters/amqp. Apply with judgment — Wenia reviewer preference distilled from 306 PR comments (3 reviewers, non-unanimous): skip when context justifies it; report convention findings as medium/low, never high/critical (reserved for bugs, security, data-loss).",
+      "merge_system_rule": true
+    },
+    {
+      "path": "**/adapters/amqp/*.ex",
+      "rule": "Wenia AMQP adapter boundary: build payloads as iodata internally, convert exactly once with IO.iodata_to_binary/1 at AMQP.Basic.publish/5, and pass a binary. Apply with judgment — Wenia reviewer preference distilled from 306 PR comments (3 reviewers, non-unanimous): skip when context justifies it; report convention findings as medium/low, never high/critical (reserved for bugs, security, data-loss).",
+      "merge_system_rule": true
+    },
+    {
+      "path": "**/adapters/**/*.ex",
+      "rule": "Wenia adapter discipline: implement port @behaviour with @impl true; normalize transport failures to domain errors (never leak raw Mint/Finch payloads to callers); use the shared HttpClient (no manual Content-Length); encode bodies with Jason.encode_to_iodata!/1; expose SQL repos as thin defdelegate facades. Apply with judgment — Wenia reviewer preference distilled from 306 PR comments (3 reviewers, non-unanimous): skip when context justifies it; report convention findings as medium/low, never high/critical (reserved for bugs, security, data-loss).",
+      "merge_system_rule": true
+    },
+    {
+      "path": "config/*.exs",
+      "rule": "Wenia config convention: port-keyed entries (config :app, PortModule, adapter: ..., api_url: ...) read via Application.fetch_env!/2; AWS production credentials as credential-chain tuples ({:system, ...}, :instance_role), never fixed secrets. Apply with judgment — Wenia reviewer preference distilled from 306 PR comments (3 reviewers, non-unanimous): skip when context justifies it; report convention findings as medium/low, never high/critical (reserved for bugs, security, data-loss).",
+      "merge_system_rule": true
+    },
+    {
+      "path": "**/config/app_config.ex",
+      "rule": "Wenia AppConfig facade: service-local module with typed accessor functions (external endpoints named api_url) instead of scattered fetch_env! calls. Apply with judgment — Wenia reviewer preference distilled from 306 PR comments (3 reviewers, non-unanimous): skip when context justifies it; report convention findings as medium/low, never high/critical (reserved for bugs, security, data-loss).",
+      "merge_system_rule": true
+    },
+    {
+      "path": "**/application.ex",
+      "rule": "Wenia boot convention: explicit supervision tree including HttpClient/Finch among children; no unsupervised long-lived stateful processes; no GenServer for stateless deterministic logic (plain functions or Task instead). Runtime scoping: applies to long-lived supervised services only — skip for Mix tasks, lambdas, migration-only repos. Apply with judgment — Wenia reviewer preference distilled from 306 PR comments (3 reviewers, non-unanimous): report convention findings as medium/low, never high/critical (reserved for bugs, security, data-loss).",
+      "merge_system_rule": true
+    },
+    {
+      "path": "**/prom_ex.ex",
+      "rule": "Wenia observability convention: metrics live in a dedicated prom_ex module; telemetry events are documented contracts (stable names, metadata keys, measurement semantics); keep a single instrumentation strategy and remove dead otel/promex/new-relic references. Apply with judgment — Wenia reviewer preference distilled from 306 PR comments (3 reviewers, non-unanimous): skip when context justifies it; report convention findings as medium/low, never high/critical (reserved for bugs, security, data-loss).",
+      "merge_system_rule": true
+    },
+    {
+      "path": "**/*_test.ex*",
+      "rule": "Wenia test discipline (self-contained entry): deterministic tests with no sleep-based synchronization; cover edge/error paths, not only the happy path; exactly ONE mocking strategy per surface (Mock or Mox, never mixed); mock adapters, not ports; ExUnit async: false; suites runnable with --no-start (AppConfig.prepare_config + ExUnit.start, no full boot); Plug.Test for entry points; processes started in setup and killed in on_exit; ?-suffixed predicates return booleans only. Apply with judgment — Wenia reviewer preference distilled from 306 PR comments (3 reviewers, non-unanimous): skip when context justifies it; report convention findings as medium/low, never high/critical (reserved for bugs, security, data-loss).",
+      "merge_system_rule": true
+    }
+  ]
+}

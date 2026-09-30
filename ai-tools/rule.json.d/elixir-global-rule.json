@@ -1,0 +1,27 @@
+{
+  "rules": [
+    {
+      "path": "priv/repo/migrations/*.exs",
+      "rule": "Ecto migration review: every migration must be reversible (define change/0 with reversible constructs, or explicit up/0 + down/0). Flag table locks on large tables (prefer CREATE INDEX CONCURRENTLY / DROP INDEX CONCURRENTLY and validate constraints with validate_constraint). New NOT NULL columns on existing tables must have a default or be added in a safe multi-step sequence. Check raw SQL fragments for injection and for database-specific syntax that breaks other adapters.",
+      "merge_system_rule": true
+    },
+    {
+      "path": "**/*_test.ex*",
+      "rule": "ExUnit test review: async: true only when tests are truly isolated (no shared DB sandbox conflicts, no global process names, no port conflicts). Flag sleep-based synchronization (prefer eventual-consistency assertions or Mox expectations). Factories/fixtures must leave no leaked state. Every critical logic path and boundary condition in the code under test should have a corresponding test case.",
+      "merge_system_rule": true
+    },
+    {
+      "path": "**/*.ex*",
+      "rule": "Elixir/OTP review (BEAM). Beyond the system checks, verify: (1) Pattern matching is exhaustive — function heads, case/receive/try must handle all shapes callers can produce, no silently unmatched messages. (2) GenServer/Agent/Task callbacks return the exact expected shapes ({:reply,...}, {:noreply,...}, {:stop,...}); handle_info covers all messages the process can receive; no unbounded mailbox growth. (3) Supervision trees declare an explicit strategy and restart intensity appropriate for the children; no unsupervised stateful processes holding critical state. (4) Ecto: changesets cast/validate all user input and mirror DB constraints (unique_constraint, foreign_key_constraint); queries preload associations to avoid N+1; no string-interpolated fragments with user input. (5) Error handling uses tagged tuples and with/else chains — no bare rescue swallowing errors, no raising for control flow in library code. (6) Phoenix/LiveView: assigns validated in mount/handle_params, no expensive work in render, HEEx free of XSS via unescaped user content. (7) No leftover IO.inspect/dbg, no System.halt in library code, Logger used with proper levels. If the host agent has elixir-* skills loaded (e.g. elixir-otp-patterns, elixir-ecto-patterns, elixir-antipatterns, elixir-pro, elixir-pattern-matching, or any future elixir-* skill), treat those skills as authoritative and apply them in addition to this checklist.",
+      "merge_system_rule": true
+    }
+  ],
+  "exclude": [
+    "_build/**",
+    "deps/**",
+    "cover/**",
+    "doc/**",
+    ".elixir_ls/**",
+    "erl_crash.dump"
+  ]
+}
