@@ -7,6 +7,5 @@ export PATH="$HOME/.asdf/shims:$HOME/.asdf/bin:$PATH"
 export ASDF_DIR="/opt/homebrew/opt/asdf"
 export ASDF_DATA_DIR="$HOME/.asdf"
 
-# New Relic terminal helpers and credentials.
-# Loaded here so they are available in both interactive and non-interactive zsh shells.
-[[ -f "$HOME/.config/newrelic/nerdgraph.zsh" ]] && source "$HOME/.config/newrelic/nerdgraph.zsh"
+# New Relic MCP credentials for processes started from any zsh shell.
+[[ -f "$HOME/.config/newrelic/nerdgraph.env" ]] && source "$HOME/.config/newrelic/nerdgraph.env"
