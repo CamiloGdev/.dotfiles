@@ -60,3 +60,8 @@ alias ci.="dot code-insiders $PWD &>/dev/null &"
 alias codi="dot code-insiders"
 alias o.="open ."
 alias vim="nvim"
+
+# KIRO
+# Kiro CLI no completa el OAuth del MCP de Linear (bug #11758); este alias
+# sincroniza el token de Linear desde OpenCode hacia la config MCP de Kiro.
+alias kiro-linear-sync="~/.config/kiro-linear/sync-token.sh"
