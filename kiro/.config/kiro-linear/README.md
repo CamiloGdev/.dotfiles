@@ -18,9 +18,4 @@ Run it when Linear stops responding in Kiro (token expired). If the token is
 already expired in OpenCode, open OpenCode and use Linear once so it refreshes,
 then run the sync again.
 
-## Notes
-
-- Notion in Kiro uses normal OAuth and needs no sync.
-- The Kiro IDE cannot use MCP at all in this workspace: the organization
-  disables MCP usage via enterprise governance.
-- `~/.kiro/settings/mcp.json` stores the token and must stay private (mode 600).
+See `~/.dotfiles/kiro/README.md` for the full Kiro MCP setup (Notion and New Relic).

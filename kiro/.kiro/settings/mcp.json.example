@@ -1,0 +1,27 @@
+{
+  "mcpServers": {
+    "notion": {
+      "url": "https://mcp.notion.com/mcp"
+    },
+    "linear": {
+      "url": "https://mcp.linear.app/mcp",
+      "headers": {
+        "Authorization": "Bearer <LINEAR_MCP_TOKEN>"
+      }
+    },
+    "newrelic_pdn": {
+      "url": "https://mcp.newrelic.com/mcp/",
+      "headers": {
+        "api-key": "${NEW_RELIC_API_KEY}",
+        "include-tags": "discovery,data-access,performance-analytics"
+      }
+    },
+    "newrelic_qa": {
+      "url": "https://mcp.newrelic.com/mcp/",
+      "headers": {
+        "api-key": "${NEW_RELIC_API_KEY_QA}",
+        "include-tags": "discovery,data-access,performance-analytics"
+      }
+    }
+  }
+}
