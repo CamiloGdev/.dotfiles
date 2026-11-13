@@ -6,7 +6,7 @@ Sistema de code review en 3 capas, sin duplicación entre ellas:
 |---|---|---|
 | Motor | `ocr` CLI (alibaba/open-code-review) + skills oficiales `open-code-review` / `open-code-review-delegate` + plugin opencode `open-code-review.ts` | Upstream (se instala, no se vendors) |
 | Lenguaje | `elixir-review` (wrapper) + `~/.opencodereview/rule.json` global Elixir/OTP + skills Elixir de terceros | `skills/` (propios) + Skills CLI (terceros) |
-| Organización | `elixir-review-wenia` (workspace Wenia) | `skills/` (propio; canonical en workspace) |
+| Organización | `wenia-elixir-style-guide` (reglas oficiales, IDs estables) + `elixir-review-wenia` (cómo revisar con esas reglas) | `skills/` (la guía es copia sin editar de `AI_0006_wenia_ai_resources_catalog`, ver su `SOURCE.md`) |
 | Participativo | `team-review` (agnóstico; tú eliges qué wrapea) + `collaborative-pr-review` (protocolo) | `skills/` (propios) |
 
 ## Contenido de este directorio
@@ -20,14 +20,16 @@ Sistema de code review en 3 capas, sin duplicación entre ellas:
 - `skills/` — fuente versionada de los skills propios:
   `elixir-review/`, `team-review/`, `collaborative-pr-review/`,
   `elixir-review-wenia/` (con `references/wenia-rule.json` y
-  `references/wenia-checklist.md`).
+  `references/wenia-checklist.md`, que solo apuntan a IDs de la guía) y
+  `wenia-elixir-style-guide/` (copia de la guía oficial; no se edita aquí,
+  se vuelve a copiar del repo fuente).
 - `rule.json.d/elixir-global-rule.json` — checklist Elixir/OTP global
   (se instala como `~/.opencodereview/rule.json`).
 
 ## Regla de mantenimiento
 
 `ai-tools/skills/` es la fuente versionada de lo propio. Lo instalado en
-`~/.agents/skills/` son symlinks a (o copias de) esto; el skill Wenia además
-vive canónico en el workspace (`WeniaCustomers/.agents/skills/`, con symlink
-global de respaldo). Nunca edites solo la copia instalada: edita aquí y
-reinstala.
+`~/.agents/skills/` y en `WeniaCustomers/.agents/skills/` son symlinks a
+esto. Nunca edites solo la copia instalada: edita aquí y reinstala. Si
+`elixir-review-wenia` y la guía oficial difieren, gana la guía: corrige el
+skill.

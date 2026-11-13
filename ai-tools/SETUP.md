@@ -74,17 +74,18 @@ Claude Code, enlaza `~/.claude/skills -> ../.agents/skills` (ruta relativa a
 ## 4. Skills propios (vendored en `ai-tools/skills/`)
 
 `elixir-review/`, `team-review/`, `collaborative-pr-review/`,
-`elixir-review-wenia/` (con `references/`). Instalar como symlinks
-(una sola fuente de verdad):
+`elixir-review-wenia/` (con `references/`) y `wenia-elixir-style-guide/`
+(copia de la guía oficial). Instalar como symlinks (una sola fuente de
+verdad):
 
 ```bash
-for s in elixir-review team-review collaborative-pr-review elixir-review-wenia; do
+for s in elixir-review team-review collaborative-pr-review elixir-review-wenia wenia-elixir-style-guide; do
   ln -sfn "$HOME/.dotfiles/ai-tools/skills/$s" "$HOME/.agents/skills/$s"
 done
 ```
 
-Excepción: `elixir-review-wenia` además vive canónico en el workspace
-Wenia (`WeniaCustomers/.agents/skills/`); ver paso 5.
+En el workspace Wenia los dos skills Wenia se enlazan también en
+`WeniaCustomers/.agents/skills/`; ver paso 6.
 
 ## 5. Regla Elixir global
 
@@ -98,8 +99,9 @@ cp ai-tools/rule.json.d/elixir-global-rule.json ~/.opencodereview/rule.json
 ```bash
 WS=/ruta/a/WeniaCustomers   # ajusta (NO es repo git: es contenedor)
 mkdir -p "$WS/.agents/skills"
-cp -r ai-tools/skills/elixir-review-wenia "$WS/.agents/skills/"
-ln -sfn "$WS/.agents/skills/elixir-review-wenia" "$HOME/.agents/skills/elixir-review-wenia"  # respaldo global
+for s in elixir-review-wenia wenia-elixir-style-guide; do
+  ln -sfn "$HOME/.dotfiles/ai-tools/skills/$s" "$WS/.agents/skills/$s"
+done
 for d in "$WS"/SRV_* "$WS"/LIB_* "$WS"/APP_* "$WS"/GITOPS_* "$WS"/IAC_*; do
   [ -d "$d/.git" ] && [ ! -e "$d/.agents" ] && ln -s ../.agents "$d/.agents"
 done
@@ -128,5 +130,5 @@ implementación (detección viva opencode/codex/kiro-cli en workspace y repo).
 
 Pásale este directorio + `SETUP.md`: pasos 1–4 y 7 son universales; el 5–6
 solo si trabaja en el fleet Wenia (y entonces también necesita el checkout
-+ las guías fuente de `customersDocs/AI/reviewCode`, que son biblioteca
-humana, no parte instalable).
+`wenia-elixir-style-guide`, que es la fuente de las reglas; las guías de
+`customersDocs/AI/reviewCode` quedaron reemplazadas y solo son historia).

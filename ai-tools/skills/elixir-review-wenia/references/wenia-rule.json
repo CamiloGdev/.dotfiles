@@ -2,72 +2,72 @@
   "rules": [
     {
       "path": "**/domain/error/*.ex",
-      "rule": "Wenia domain-errors convention: errors are centralized as macros in DomainErrors (defmacro <name>, do: :atom). Flag inline error atoms or ad-hoc tuples that belong in DomainErrors. Apply with judgment — Wenia reviewer preference distilled from 306 PR comments (3 reviewers, non-unanimous): skip when context justifies it; report convention findings as medium/low, never high/critical (reserved for bugs, security, data-loss).",
+      "rule": "Wenia Elixir style guide: Errors are functions in DomainErrors (ERR-5); failures returned as {:error, DomainErrors.name()} (ERR-4); never rename an error atom (ERR-5, ERR-11). Source: wenia-elixir-style-guide (rules 0.1.0). Read the repo AGENTS.md first: skip a rule only when it names an override for that rule ID; legacy code untouched by the diff is not rewritten (CF-1). Severity: bugs, security, data loss, money or compliance risk = high/critical; a broken Must rule in new code = medium (blocking); Should = low; cite the rule ID in every finding.",
       "merge_system_rule": true
     },
     {
       "path": "**/error_mapper.ex",
-      "rule": "Wenia ErrorMapper convention: map errors through error_info clauses with B00-*/T00-* codes (B prefix = business/client 4xx, T prefix = technical/server 5xx) plus a catch-all fallback to T00-000/500; prefer a service_error_code/2 helper over repeated literals; preserve 4xx/5xx semantics (never 500 for client errors). Apply with judgment — Wenia reviewer preference distilled from 306 PR comments (3 reviewers, non-unanimous): skip when context justifies it; report convention findings as medium/low, never high/critical (reserved for bugs, security, data-loss).",
+      "rule": "Wenia Elixir style guide: HTTP mapping only here: one error_info/1 clause per error with a unique code, message and status (ERR-6); final catch-all fallback (ERR-7); keep existing statuses and codes (ERR-12). Source: wenia-elixir-style-guide (rules 0.1.0). Read the repo AGENTS.md first: skip a rule only when it names an override for that rule ID; legacy code untouched by the diff is not rewritten (CF-1). Severity: bugs, security, data loss, money or compliance risk = high/critical; a broken Must rule in new code = medium (blocking); Should = low; cite the rule ID in every finding.",
       "merge_system_rule": true
     },
     {
       "path": "**/domain/ports/*.ex",
-      "rule": "Wenia port contracts: integration boundaries are declared as @callback specs returning {:ok, _} | {:error, atom()}, implemented by adapters with @behaviour and @impl true. Apply with judgment — Wenia reviewer preference distilled from 306 PR comments (3 reviewers, non-unanimous): skip when context justifies it; report convention findings as medium/low, never high/critical (reserved for bugs, security, data-loss).",
+      "rule": "Wenia Elixir style guide: Each external system behind a Domain.Ports behaviour whose callbacks use domain types; provider names stop at the adapter (ARCH-2); no infrastructure-specific callbacks (PB-12). Source: wenia-elixir-style-guide (rules 0.1.0). Read the repo AGENTS.md first: skip a rule only when it names an override for that rule ID; legacy code untouched by the diff is not rewritten (CF-1). Severity: bugs, security, data loss, money or compliance risk = high/critical; a broken Must rule in new code = medium (blocking); Should = low; cite the rule ID in every finding.",
       "merge_system_rule": true
     },
     {
       "path": "**/domain/use_cases/*.ex",
-      "rule": "Wenia use-case layer: orchestrate business logic only, resolving dependencies via ModuleInyector adapter_for with explicit [mode: ..., ports: [...]] syntax from the shared Wenia.Commons macro — never a service-local injector copy, never mixed injectors in one module, no ExAws/Ecto/Finch/Req calls inline. Control flow: case for single branching decisions, with only for chains of 2+ success-dependent matches (plus else when error shape matters); never nest with inside else — extract a private helper using case; inline single-use expressions in with; no try/rescue/catch for normal domain outcomes. Apply with judgment — Wenia reviewer preference distilled from 306 PR comments (3 reviewers, non-unanimous): skip when context justifies it; report convention findings as medium/low, never high/critical (reserved for bugs, security, data-loss).",
+      "rule": "Wenia Elixir style guide: Business decisions here or in models (ARCH-1); adapters only via ModuleInyector adapter_for with explicit mode/ports (ARCH-4); no Application calls (DATA-9); validated models as input (ARCH-6); only handle/N public (ARCH-16); validate before side effects (ARCH-17); case vs with, at most one else, no nesting, no piping results (CF-5, CF-6, CF-9); no hand-written retries (ERR-10). Source: wenia-elixir-style-guide (rules 0.1.0). Read the repo AGENTS.md first: skip a rule only when it names an override for that rule ID; legacy code untouched by the diff is not rewritten (CF-1). Severity: bugs, security, data loss, money or compliance risk = high/critical; a broken Must rule in new code = medium (blocking); Should = low; cite the rule ID in every finding.",
       "merge_system_rule": true
     },
     {
-      "path": "**/domain/models/*.ex",
-      "rule": "Wenia model boundary: validate with MapValidator/JsonMapper @field_specs inside new/1 returning {:ok, _} | {:error, _}; public structs carry @enforce_keys and @type t; dot access for required fields, bracket access for optional ones. Apply with judgment — Wenia reviewer preference distilled from 306 PR comments (3 reviewers, non-unanimous): skip when context justifies it; report convention findings as medium/low, never high/critical (reserved for bugs, security, data-loss).",
+      "path": "**/domain/models/**/*.ex",
+      "rule": "Wenia Elixir style guide: new/1 with MapValidator and @field_specs, @type t, @enforce_keys (MODEL-1..3, DATA-1, DATA-3); multi-value states as vocabulary atoms (MODEL-4); JsonMapper only when to_json_map/2 is used (MODEL-5); no HTTP/JSON/vendor logic (MODEL-10); Decimal amounts (DATA-6). Source: wenia-elixir-style-guide (rules 0.1.0). Read the repo AGENTS.md first: skip a rule only when it names an override for that rule ID; legacy code untouched by the diff is not rewritten (CF-1). Severity: bugs, security, data loss, money or compliance risk = high/critical; a broken Must rule in new code = medium (blocking); Should = low; cite the rule ID in every finding.",
       "merge_system_rule": true
     },
     {
-      "path": "**/entry_point/http/*.ex",
-      "rule": "Wenia HTTP boundary: canonical Plug pipeline order (plug :match, Plug.Parsers with json/Jason, plug :dispatch); routers stay declarative and delegate to use cases; errors flow through the centralized ErrorMapper; render API decimals with Decimal.to_string(:normal). Apply with judgment — Wenia reviewer preference distilled from 306 PR comments (3 reviewers, non-unanimous): skip when context justifies it; report convention findings as medium/low, never high/critical (reserved for bugs, security, data-loss).",
+      "path": "**/entry_point/http/**/*.ex",
+      "rule": "Wenia Elixir style guide: Build input, call one use case, map result (HTTP-1); Plug.Parsers (HTTP-2); one else to ErrorMapper (HTTP-4, ARCH-8); catch-all route (HTTP-6); Plug.ErrorHandler without bodies or secrets (HTTP-7, OBS-8); stable bodies (HTTP-5, ERR-12). Source: wenia-elixir-style-guide (rules 0.1.0). Read the repo AGENTS.md first: skip a rule only when it names an override for that rule ID; legacy code untouched by the diff is not rewritten (CF-1). Severity: bugs, security, data loss, money or compliance risk = high/critical; a broken Must rule in new code = medium (blocking); Should = low; cite the rule ID in every finding.",
       "merge_system_rule": true
     },
     {
-      "path": "**/entry_point/amqp/**/*.ex",
-      "rule": "Wenia AMQP entry points carry transport concerns only; publishing/integration logic lives in adapters/amqp. Apply with judgment — Wenia reviewer preference distilled from 306 PR comments (3 reviewers, non-unanimous): skip when context justifies it; report convention findings as medium/low, never high/critical (reserved for bugs, security, data-loss).",
-      "merge_system_rule": true
-    },
-    {
-      "path": "**/adapters/amqp/*.ex",
-      "rule": "Wenia AMQP adapter boundary: build payloads as iodata internally, convert exactly once with IO.iodata_to_binary/1 at AMQP.Basic.publish/5, and pass a binary. Apply with judgment — Wenia reviewer preference distilled from 306 PR comments (3 reviewers, non-unanimous): skip when context justifies it; report convention findings as medium/low, never high/critical (reserved for bugs, security, data-loss).",
+      "path": "**/entry_point/**/*.ex",
+      "rule": "Wenia Elixir style guide: Each channel owns its namespace (ARCH-7); entry points build the request model and pass it to the use case (ARCH-6); message paths are idempotent (ARCH-14). Source: wenia-elixir-style-guide (rules 0.1.0). Read the repo AGENTS.md first: skip a rule only when it names an override for that rule ID; legacy code untouched by the diff is not rewritten (CF-1). Severity: bugs, security, data loss, money or compliance risk = high/critical; a broken Must rule in new code = medium (blocking); Should = low; cite the rule ID in every finding.",
       "merge_system_rule": true
     },
     {
       "path": "**/adapters/**/*.ex",
-      "rule": "Wenia adapter discipline: implement port @behaviour with @impl true; normalize transport failures to domain errors (never leak raw Mint/Finch payloads to callers); use the shared HttpClient (no manual Content-Length); encode bodies with Jason.encode_to_iodata!/1; expose SQL repos as thin defdelegate facades. Apply with judgment — Wenia reviewer preference distilled from 306 PR comments (3 reviewers, non-unanimous): skip when context justifies it; report convention findings as medium/low, never high/critical (reserved for bugs, security, data-loss).",
+      "rule": "Wenia Elixir style guide: @behaviour + @impl Port (ARCH-3); only HttpClient with breaker options (PB-1); classify, decode, project as separate steps (PB-2, PB-3); validate provider fields (PB-4); fallback to a domain error, never return raw Finch/Mint values (PB-6); no provider body or secret in errors or logs (PB-7, OBS-8); never inspect(error) a transport or decode result (OBS-8); log a failure once where handled (OBS-12); retries via Wenia.Commons.Macros.Retry only (ERR-10, PB-12). Source: wenia-elixir-style-guide (rules 0.1.0). Read the repo AGENTS.md first: skip a rule only when it names an override for that rule ID; legacy code untouched by the diff is not rewritten (CF-1). Severity: bugs, security, data loss, money or compliance risk = high/critical; a broken Must rule in new code = medium (blocking); Should = low; cite the rule ID in every finding.",
       "merge_system_rule": true
     },
     {
       "path": "config/*.exs",
-      "rule": "Wenia config convention: port-keyed entries (config :app, PortModule, adapter: ..., api_url: ...) read via Application.fetch_env!/2; AWS production credentials as credential-chain tuples ({:system, ...}, :instance_role), never fixed secrets. Apply with judgment — Wenia reviewer preference distilled from 306 PR comments (3 reviewers, non-unanimous): skip when context justifies it; report convention findings as medium/low, never high/critical (reserved for bugs, security, data-loss).",
+      "rule": "Wenia Elixir style guide: Settings under the port key (DATA-7); per-deployment values as {:system, VAR} tuples (DATA-12); keys carry units (DATA-16); removed ports/adapters leave no config entries (DATA-13); :default_formatter, not :console (OBS-15); new metadata keys in the formatter list (OBS-2). Source: wenia-elixir-style-guide (rules 0.1.0). Read the repo AGENTS.md first: skip a rule only when it names an override for that rule ID; legacy code untouched by the diff is not rewritten (CF-1). Severity: bugs, security, data loss, money or compliance risk = high/critical; a broken Must rule in new code = medium (blocking); Should = low; cite the rule ID in every finding.",
       "merge_system_rule": true
     },
     {
       "path": "**/config/app_config.ex",
-      "rule": "Wenia AppConfig facade: service-local module with typed accessor functions (external endpoints named api_url) instead of scattered fetch_env! calls. Apply with judgment — Wenia reviewer preference distilled from 306 PR comments (3 reviewers, non-unanimous): skip when context justifies it; report convention findings as medium/low, never high/critical (reserved for bugs, security, data-loss).",
+      "rule": "Wenia Elixir style guide: No AppConfig facade (DATA-10, Must): each module reads its own config in a private config/1 or at init. New accessors added to a legacy facade need a DATA-10 override in AGENTS.md. Required settings fail at boot in the owning module (DATA-11). Source: wenia-elixir-style-guide (rules 0.1.0). Read the repo AGENTS.md first: skip a rule only when it names an override for that rule ID; legacy code untouched by the diff is not rewritten (CF-1). Severity: bugs, security, data loss, money or compliance risk = high/critical; a broken Must rule in new code = medium (blocking); Should = low; cite the rule ID in every finding.",
       "merge_system_rule": true
     },
     {
       "path": "**/application.ex",
-      "rule": "Wenia boot convention: explicit supervision tree including HttpClient/Finch among children; no unsupervised long-lived stateful processes; no GenServer for stateless deterministic logic (plain functions or Task instead). Runtime scoping: applies to long-lived supervised services only — skip for Mix tasks, lambdas, migration-only repos. Apply with judgment — Wenia reviewer preference distilled from 306 PR comments (3 reviewers, non-unanimous): report convention findings as medium/low, never high/critical (reserved for bugs, security, data-loss).",
+      "rule": "Wenia Elixir style guide: Every process supervised under the Application tree (ARCH-11); GenServer only for owned state, serialized access or scheduled work (ARCH-12); required settings validated at start (DATA-11); module reads its own config (DATA-10). Runtime scoping: long-lived services only. Source: wenia-elixir-style-guide (rules 0.1.0). Read the repo AGENTS.md first: skip a rule only when it names an override for that rule ID; legacy code untouched by the diff is not rewritten (CF-1). Severity: bugs, security, data loss, money or compliance risk = high/critical; a broken Must rule in new code = medium (blocking); Should = low; cite the rule ID in every finding.",
       "merge_system_rule": true
     },
     {
-      "path": "**/prom_ex.ex",
-      "rule": "Wenia observability convention: metrics live in a dedicated prom_ex module; telemetry events are documented contracts (stable names, metadata keys, measurement semantics); keep a single instrumentation strategy and remove dead otel/promex/new-relic references. Apply with judgment — Wenia reviewer preference distilled from 306 PR comments (3 reviewers, non-unanimous): skip when context justifies it; report convention findings as medium/low, never high/critical (reserved for bugs, security, data-loss).",
+      "path": "**/*_test.exs",
+      "rule": "Wenia Elixir style guide: Mox only on domain ports, mocks in test/support/mocks.ex bound in config/test.exs with verify_on_exit!; never mock HttpClient, ExAws or internal modules; no new Mock/:meck without an AGENTS.md TEST-9 override (TEST-9); HTTP adapter tests assert the request captured by a stub (TEST-21); describe names the function, router tests by verb and path (TEST-5, TEST-23, HTTP-10); no tests generated with for (TEST-19); --no-start and start_supervised! (TEST-8); restore global state (TEST-7); no sleeps (TEST-11); happy/error/edge paths (TEST-1); never weaken a test (TEST-2). Source: wenia-elixir-style-guide (rules 0.1.0). Read the repo AGENTS.md first: skip a rule only when it names an override for that rule ID; legacy code untouched by the diff is not rewritten (CF-1). Severity: bugs, security, data loss, money or compliance risk = high/critical; a broken Must rule in new code = medium (blocking); Should = low; cite the rule ID in every finding.",
       "merge_system_rule": true
     },
     {
-      "path": "**/*_test.ex*",
-      "rule": "Wenia test discipline (self-contained entry): deterministic tests with no sleep-based synchronization; cover edge/error paths, not only the happy path; exactly ONE mocking strategy per surface (Mock or Mox, never mixed); mock adapters, not ports; ExUnit async: false; suites runnable with --no-start (AppConfig.prepare_config + ExUnit.start, no full boot); Plug.Test for entry points; processes started in setup and killed in on_exit; ?-suffixed predicates return booleans only. Apply with judgment — Wenia reviewer preference distilled from 306 PR comments (3 reviewers, non-unanimous): skip when context justifies it; report convention findings as medium/low, never high/critical (reserved for bugs, security, data-loss).",
+      "path": "mix.exs",
+      "rule": "Wenia Elixir style guide: Credo >= 1.7.17 (QT-17); tooling deps dev/test with runtime: false and mix.lock committed (QT-11). Source: wenia-elixir-style-guide (rules 0.1.0). Read the repo AGENTS.md first: skip a rule only when it names an override for that rule ID; legacy code untouched by the diff is not rewritten (CF-1). Severity: bugs, security, data loss, money or compliance risk = high/critical; a broken Must rule in new code = medium (blocking); Should = low; cite the rule ID in every finding.",
+      "merge_system_rule": true
+    },
+    {
+      "path": "**/.credo.exs",
+      "rule": "Wenia Elixir style guide: Explicit enabled: list including ExSlop checks (QT-3, QT-6); suppressions inline with reason and narrowest scope (QT-7). Source: wenia-elixir-style-guide (rules 0.1.0). Read the repo AGENTS.md first: skip a rule only when it names an override for that rule ID; legacy code untouched by the diff is not rewritten (CF-1). Severity: bugs, security, data loss, money or compliance risk = high/critical; a broken Must rule in new code = medium (blocking); Should = low; cite the rule ID in every finding.",
       "merge_system_rule": true
     }
   ]

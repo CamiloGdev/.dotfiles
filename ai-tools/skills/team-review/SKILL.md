@@ -47,7 +47,9 @@ your detection and ask the 4 items in one message:
    - **(b) ocr + a language skill** — e.g. `elixir-review` when `.ex/.exs`
      dominate.
    - **(c) ocr + a domain skill** — e.g. `elixir-review-wenia` only when
-     Wenia signals are present.
+     Wenia signals are present. It loads `wenia-elixir-style-guide`, the
+     official Wenia rules (rule IDs, Must/Should/May), and reads the repo's
+     `AGENTS.md` overrides.
    Load `open-code-review-delegate` first, then ONLY the chosen skills. A Node
    project must never end up with `elixir-review`: ask rather than assume.
 4. **Mode** — default is guided (gates at each phase). Offer *"hazlo rápido"*
@@ -104,12 +106,17 @@ coverage and positioning, OCR wins.
 
 ## Step 3 — Severity and publishing discipline
 
-Shared contract across all three layers (delegate skill, domain skills,
-collaborative protocol): critical/high reserved for bugs, security, or
-data-loss with a concrete scenario; conventions at medium/low with context;
-individual preferences suggested once as low or omitted. Conventions are
-never critical. Publish only approved comments, drafted first in the
-reviewer's working language.
+Shared contract across all layers (delegate skill, domain skills,
+collaborative protocol): critical/high reserved for bugs, security, data
+loss, money or compliance risk with a concrete scenario. Conventions are
+never critical. When the target brings a style guide with rule levels (Wenia:
+`wenia-elixir-style-guide`), its calibration applies: a **Must** rule broken
+by new code without an `AGENTS.md` override is **blocking** (medium unless it
+is also a bug), a **Should** rule is a non-blocking suggestion (low), a
+**May** rule is mentioned only if clearly useful; every finding cites its
+rule ID. Without a style guide, conventions are medium/low with context and
+individual preferences are suggested once as low or omitted. Publish only
+approved comments, drafted first in the reviewer's working language.
 
 Deliverable follows the ownership decided in Step 0:
 

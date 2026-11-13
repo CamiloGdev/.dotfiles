@@ -31,7 +31,7 @@ fi
 
 # 3. Skills propios -> symlinks (una sola fuente de verdad)
 mkdir -p "$HOME/.agents/skills"
-for s in elixir-review team-review collaborative-pr-review elixir-review-wenia; do
+for s in elixir-review team-review collaborative-pr-review elixir-review-wenia wenia-elixir-style-guide; do
   if [ -d "$AI_TOOLS_DIR/skills/$s" ]; then
     if [ -e "$HOME/.agents/skills/$s" ] && [ ! -L "$HOME/.agents/skills/$s" ]; then
       rm -rf "$HOME/.agents/skills/$s"   # copia real previa: fuente pasa a ser ai-tools

@@ -94,9 +94,11 @@ por `elixir-`).
 
 **También con TU modelo** (delegation). Solo se activa ante señales Wenia
 (layout `domain/adapters/entry_point`, `wenia_commons` en `mix.exs`, mención
-de `SRV_*`). Añade checklist Wenia con criterio: consenso `[C]` → medium,
-recomendado `[R]` → low/medium, preferencias individuales `[P]` → low u
-omitir; convenciones nunca critical. PR ajeno sin acceso commit: el skill
+de `SRV_*`). Carga `wenia-elixir-style-guide` (reglas oficiales con IDs como `DATA-10`,
+`TEST-9`, `ERR-10`) y el `AGENTS.md` del repo con sus overrides. Severidad:
+bug, seguridad, pérdida de datos, dinero o compliance → high/critical; regla
+**Must** rota en código nuevo sin override → bloqueante (medium); **Should**
+→ sugerencia low; convenciones nunca critical. Cada hallazgo cita su ID. PR ajeno sin acceso commit: el skill
 pasa `--rule <skill>/references/wenia-rule.json` a los comandos `ocr`.
 
 ## team-review (modo equipo): el skill te pregunta lo necesario

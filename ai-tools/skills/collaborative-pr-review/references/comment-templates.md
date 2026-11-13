@@ -12,7 +12,12 @@ Use this shape:
    risk, a contract break, a maintenance trap). Not "this is bad practice".
 3. **Suggestion** — a concrete, minimal change. Prefer showing the shape of the
    fix over prescribing an exact implementation.
-4. **Severity** — critical/high/medium/low, implied by the tone or stated.
+4. **Severity** — critical/high/medium/low, implied by the tone or stated. Open
+   the comment with a Conventional Comments label so blocking is explicit:
+   `**issue (blocking):**`, `**suggestion (non-blocking):**`,
+   `**question (blocking|non-blocking):**`, `**todo**`, `**nitpick**`,
+   `**praise**`. When a style guide applies, cite the rule ID and level
+   (e.g. `DATA-10 (Must)`); a broken Must rule in new code is blocking.
 5. **Related references** — `file:line` of the code the comment depends on.
 6. **Already tracked** — if the issue is filed elsewhere (e.g. a ticket), say so
    in one line and link it; do not re-explain the whole issue.

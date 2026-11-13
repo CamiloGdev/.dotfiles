@@ -54,6 +54,9 @@ their rules override generic advice when they conflict.
   the alphabetical list the PR page shows.
 - **Severity is a contract.** Reserve critical/high for real bugs, security and
   data-loss risks. Conventions and style are medium/low and must carry context.
+  When a loaded style guide defines rule levels (e.g. Must/Should/May), use
+  them for blocking vs non-blocking and cite the rule ID; the repo's
+  `AGENTS.md` overrides decide which rules apply.
 - **Never publish without explicit approval.** Draft in the reviewer's working
   language, get sign-off, then publish in the target language.
 

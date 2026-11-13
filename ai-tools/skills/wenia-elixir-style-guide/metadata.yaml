@@ -1,0 +1,14 @@
+apiVersion: marketplace.wenia.com/v1
+kind: Asset
+
+metadata:
+  name: wenia-elixir-style-guide
+  title: "Wenia Elixir Style Guide"
+  description: "Writes and reviews Elixir code following Wenia's unified Elixir rules: control flow, naming, errors, data and config, hexagonal architecture, provider boundaries, observability, testing, quality tooling, SQL, HTTP, SQS and models, with stable rule IDs"
+  tags: [elixir, style-guide, code-review, credo, hexagonal-architecture]
+  contributors: ["Wenia Engineering Team"]
+
+spec:
+  type: skill
+  version: "1.0.0"
+  allowedGroups: ["*"]

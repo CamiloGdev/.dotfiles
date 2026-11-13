@@ -33,7 +33,9 @@ Load via the `skill` tool, in this order:
 2. All discovered `elixir-*` skills — this automatically includes
    `elixir-review-wenia` when present, which activates its own Wenia fleet
    layer only for Wenia services (it self-detects via
-   `domain/adapters/entry_point` layout or `wenia_commons` in `mix.exs`).
+   `domain/adapters/entry_point` layout or `wenia_commons` in `mix.exs`) and
+   loads `wenia-elixir-style-guide`, the official Wenia rules. That skill is
+   not `elixir-*` prefixed, so it arrives through `elixir-review-wenia`.
 
 If no `elixir-*` skill is installed, proceed with delegation alone and state
 that in the report.
@@ -49,10 +51,16 @@ review each file with full coverage (`total_files`, `reviewed_files`,
 ### Step 3: Apply Elixir skills as authoritative checklists
 
 While reviewing each Elixir file (`.ex`, `.exs`, `.heex`), enforce the loaded
-`elixir-*` skills alongside the OCR-resolved rules. On conflict between a
-generic OCR observation and an `elixir-*` skill, the `elixir-*` skill wins
-for Elixir-specific concerns (OTP semantics, supervision, Ecto, BEAM
-concurrency); OCR wins for positioning and coverage discipline.
+`elixir-*` skills alongside the OCR-resolved rules. Precedence on conflict:
+
+1. The repo's `AGENTS.md` (declared overrides of rule IDs).
+2. `wenia-elixir-style-guide` in Wenia repos (e.g. no `AppConfig` facade,
+   Mox only on ports, no hand-written retries, no fixed sleeps in tests).
+3. Generic `elixir-*` skills for Elixir-specific concerns (OTP semantics,
+   supervision, Ecto, BEAM concurrency). Their examples (e.g.
+   `Process.sleep` in tests) never override a rule above.
+4. Generic OCR observations. OCR still wins for positioning and coverage
+   discipline.
 
 ### Step 4: Report and optionally fix
 
