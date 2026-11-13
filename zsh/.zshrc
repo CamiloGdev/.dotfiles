@@ -190,3 +190,9 @@ export KERL_BUILD_DOCS=yes
 
 # Kiro CLI modifies shell process state; keep it out of Herdr-managed panes.
 [[ "${HERDR_ENV:-}" != "1" && -f "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/kiro-cli/shell/zshrc.post.zsh"
+
+## [Completion]
+## Completion scripts setup. Remove the following line to uninstall
+[[ -f "$HOME/.dart-cli-completion/zsh-config.zsh" ]] && . "$HOME/.dart-cli-completion/zsh-config.zsh" || true
+## [/Completion]
+
