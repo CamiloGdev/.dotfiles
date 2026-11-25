@@ -4,10 +4,7 @@
       "url": "https://mcp.notion.com/mcp"
     },
     "linear": {
-      "url": "https://mcp.linear.app/mcp",
-      "headers": {
-        "Authorization": "Bearer <LINEAR_MCP_TOKEN>"
-      }
+      "url": "https://mcp.linear.app/mcp"
     },
     "newrelic_pdn": {
       "url": "https://mcp.newrelic.com/mcp/",

@@ -1,4 +1,11 @@
-# Linear MCP en Kiro: workaround por token (paso a paso)
+# Linear MCP en Kiro: fallback por token (Kiro < 2.29.1)
+
+> **Actualización 2026-10-22:** el bug quedó corregido en **Kiro CLI 2.29.1**
+> ([#11758](https://github.com/kirodotdev/Kiro/issues/11758)). Validado de nuevo
+> con **Kiro CLI 3.6.0**: el OAuth nativo de Linear funciona y la config viva
+> solo tiene `url`. El camino recomendado hoy es dejar `linear` solo con `url` y
+> autenticar con `/mcp` (o Ctrl+Y) en `kiro-cli chat`. Esta guía queda como
+> **fallback** si el OAuth vuelve a fallar.
 
 ## El problema
 
@@ -23,7 +30,7 @@ Kiro y lo renueva cuando caduca.
 
 | Servidor | URL | Auth en OpenCode | Auth en Kiro |
 |---|---|---|---|
-| Linear | `https://mcp.linear.app/mcp` | OAuth (funciona) | Bearer token (workaround) |
+| Linear | `https://mcp.linear.app/mcp` | OAuth (funciona) | OAuth (2.29.1+); Bearer solo como fallback |
 | Notion | `https://mcp.notion.com/mcp` | OAuth | OAuth (funciona) |
 | New Relic PDN | `https://mcp.newrelic.com/mcp/` | API key | API key |
 | New Relic QA | `https://mcp.newrelic.com/mcp/` | API key | API key |
@@ -40,36 +47,38 @@ Esta guía cubre **Linear** (el problema). Notion y New Relic son opcionales (al
 
 ### 1.2 Añadir el MCP de Linear
 Edita tu config de OpenCode (global): `~/.config/opencode/opencode.jsonc`
-y **fusiona** esta entrada dentro del objeto `mcp` existente:
+y **fusiona** esta entrada dentro de `mcp.servers` (OpenCode v2):
 
 ```jsonc
 {
   "$schema": "https://opencode.ai/config.json",
   "mcp": {
-    "linear": {
-      "type": "remote",
-      "url": "https://mcp.linear.app/mcp",
-      "enabled": true
+    "servers": {
+      "linear": {
+        "type": "remote",
+        "url": "https://mcp.linear.app/mcp"
+      }
     }
   }
 }
 ```
 
-> Nota: la sintaxis corresponde a OpenCode 1.18.30. Si usas la v2, el bloque va
-> bajo `mcp.servers`.
+> Nota: validado con OpenCode v2.2.7. En OpenCode v1 los servidores van
+> directamente bajo `mcp` (sin `servers`) y no existe el campo `disabled`.
 
 ### 1.3 Autenticar
 ```bash
 opencode mcp auth linear
 ```
-Se abre el navegador: elige el workspace de Linear y autoriza.
+Se abre el navegador: elige el workspace de Linear y autoriza. También puedes
+usar `/mcps` dentro de OpenCode.
 
 ### 1.4 Verificar
 ```bash
 opencode mcp list
-opencode mcp auth list
 ```
-Debe aparecer `linear connected` y `linear authenticated`.
+Debe aparecer `✓ linear connected`. En OpenCode v2 no existe
+`opencode mcp auth list`; el estado se ve en `opencode mcp list` o en `/mcps`.
 
 Esto guarda el token en `~/.local/share/opencode/mcp-auth.json`. El script lo leerá
 desde ahí.

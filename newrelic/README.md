@@ -1,9 +1,9 @@
 # New Relic MCP
 
 New Relic access from OpenCode uses the official hosted MCP server with separate
-User API keys for production (PDN) and QA. The persistent MCP entries live in
-`opencode/.config/opencode/opencode.jsonc`; `zsh/.zshenv` loads the private
-credential file directly.
+User API keys for production (PDN) and QA. The persistent MCP entries live under
+`mcp.servers` in `opencode/.config/opencode/opencode.jsonc` (OpenCode v2);
+`zsh/.zshenv` loads the private credential file directly.
 
 ## Environments
 
