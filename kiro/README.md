@@ -12,6 +12,7 @@ Linear Bearer token.
 | `linear` | OAuth (2.29.1+) | Fixed in Kiro CLI 2.29.1 ([#11758](https://github.com/kirodotdev/Kiro/issues/11758)). Authenticate with `/mcp`; the OpenCode token sync remains as a fallback. |
 | `newrelic_pdn` | `api-key` header | `NEW_RELIC_API_KEY` (see `~/.config/newrelic/nerdgraph.env`). |
 | `newrelic_qa` | `api-key` header | `NEW_RELIC_API_KEY_QA`. |
+| `playwright` | local (`npx`) | Playwright MCP with Chrome; output under `~/Library/Caches/playwright-mcp-output`. Requires Node 18+. |
 
 ## Setup on a new machine
 
@@ -33,11 +34,14 @@ Linear Bearer token.
    back to `kiro-linear-sync` and restore the Bearer header.
 
 4. Start `kiro-cli` and check `/mcp` (expect notion, linear, newrelic_pdn,
-   newrelic_qa all running). From a shell, `kiro-cli mcp list` shows the default
-   agent's four servers.
+   newrelic_qa, playwright all running). From a shell, `kiro-cli mcp list` shows
+   the default agent's five servers.
 
 ## Notes
 
+- `playwright` runs a local stdio server via `npx` and drives Google Chrome. The
+  template uses `${HOME}`; if your version does not expand variables inside
+  `env`, replace it with the absolute cache path.
 - The Kiro IDE cannot use MCP in this workspace: the organization disables MCP
   usage via enterprise governance. The CLI is unaffected.
 - `~/.kiro/settings/mcp.json` must stay private (mode 600).

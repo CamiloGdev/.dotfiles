@@ -27,6 +27,22 @@
           "api-key": "{env:NEW_RELIC_API_KEY_QA}",
           "include-tags": "discovery,data-access,performance-analytics"
         }
+      },
+      "playwright": {
+        "type": "local",
+        "command": [
+          "npx",
+          "-y",
+          "@playwright/mcp@latest",
+          "--browser",
+          "chrome"
+        ],
+        "environment": {
+          "PLAYWRIGHT_MCP_OUTPUT_DIR": "{env:HOME}/Library/Caches/playwright-mcp-output"
+        },
+        "timeout": {
+          "startup": 60000
+        }
       }
     }
   },
